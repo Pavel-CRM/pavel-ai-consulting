@@ -3,69 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Павел Васильев — AI-автоматизация и консалтинг для бизнеса</title>
+<title>Павел Васильев — AI-автоматизация для бизнеса и специалистов</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f7f5ef;
-    --card: rgba(255, 255, 255, 0.82);
-    --card-solid: #ffffff;
-    --ink: #171817;
-    --muted: rgba(23, 24, 23, 0.64);
-    --muted-soft: rgba(23, 24, 23, 0.38);
-    --line: rgba(23, 24, 23, 0.1);
-    --teal: #0f766e;
-    --teal-soft: #e4f5f1;
-    --amber: #b86a1f;
-    --amber-soft: #fcf0e2;
+    --paper: #f7f3eb;
+    --surface: rgba(255, 255, 255, 0.8);
+    --surface-strong: #ffffff;
+    --ink: #161616;
+    --muted: rgba(22, 22, 22, 0.64);
+    --muted-soft: rgba(22, 22, 22, 0.38);
+    --line: rgba(22, 22, 22, 0.1);
+    --teal: #146c63;
+    --teal-soft: #e2f3ef;
+    --amber: #b36a2a;
+    --amber-soft: #f9ecde;
     --night: #15211d;
-    --night-soft: #22322d;
-    --radius: 18px;
-    --radius-lg: 28px;
-    --shadow: 0 20px 60px rgba(21, 33, 29, 0.08);
-    --serif: "Fraunces", Georgia, serif;
-    --sans: "DM Sans", system-ui, sans-serif;
+    --night-soft: #22332d;
     --accent: var(--teal);
     --accent-soft: var(--teal-soft);
-    --accent-rgb: 15, 118, 110;
+    --accent-rgb: 20, 108, 99;
+    --shadow: 0 22px 70px rgba(21, 33, 29, 0.08);
+    --radius: 20px;
+    --radius-lg: 32px;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "DM Sans", system-ui, sans-serif;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; font-size: 16px; }
   body {
     font-family: var(--sans);
     color: var(--ink);
     background:
-      radial-gradient(circle at top left, rgba(15,118,110,0.10), transparent 32%),
-      radial-gradient(circle at top right, rgba(184,106,31,0.10), transparent 28%),
-      linear-gradient(180deg, #fbfaf7 0%, var(--paper) 46%, #f3f1eb 100%);
+      radial-gradient(circle at top left, rgba(20,108,99,0.10), transparent 32%),
+      radial-gradient(circle at top right, rgba(179,106,42,0.08), transparent 28%),
+      linear-gradient(180deg, #fcfaf5 0%, var(--paper) 46%, #f3eee5 100%);
     line-height: 1.6;
     overflow-x: hidden;
-    transition: background 0.35s ease, color 0.25s ease;
+    transition: background 0.3s ease;
   }
-  body[data-audience="specialists"] {
+  body[data-mode="specialists"] {
     --accent: var(--amber);
     --accent-soft: var(--amber-soft);
-    --accent-rgb: 184, 106, 31;
+    --accent-rgb: 179, 106, 42;
     background:
-      radial-gradient(circle at top left, rgba(184,106,31,0.10), transparent 32%),
-      radial-gradient(circle at top right, rgba(15,118,110,0.08), transparent 28%),
-      linear-gradient(180deg, #fcfaf6 0%, #f7f2ea 46%, #f3ede4 100%);
+      radial-gradient(circle at top left, rgba(179,106,42,0.11), transparent 32%),
+      radial-gradient(circle at top right, rgba(20,108,99,0.06), transparent 28%),
+      linear-gradient(180deg, #fdf9f2 0%, #f6eee2 48%, #f1e8da 100%);
   }
-  a { color: inherit; }
   img { display: block; max-width: 100%; }
+  a { color: inherit; }
 
   nav {
     position: fixed;
-    top: 0; left: 0; right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 50;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 72px;
     padding: 0 32px;
-    height: 70px;
-    background: rgba(247,245,239,0.78);
+    background: rgba(247, 243, 235, 0.78);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid transparent;
@@ -73,23 +75,23 @@
   }
   nav.scrolled {
     border-color: var(--line);
-    box-shadow: 0 8px 30px rgba(21, 33, 29, 0.06);
+    box-shadow: 0 8px 28px rgba(21, 33, 29, 0.05);
   }
   .nav-logo {
     font-family: var(--serif);
     font-size: 19px;
-    text-decoration: none;
     letter-spacing: -0.03em;
+    text-decoration: none;
   }
   .nav-links {
     display: flex;
+    gap: 26px;
     align-items: center;
-    gap: 28px;
   }
   .nav-links a {
-    text-decoration: none;
     font-size: 14px;
     color: var(--muted);
+    text-decoration: none;
     transition: color 0.2s ease;
   }
   .nav-links a:hover { color: var(--ink); }
@@ -101,15 +103,15 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    text-decoration: none;
     border-radius: 999px;
+    text-decoration: none;
     font-weight: 500;
     transition: transform 0.18s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   }
   .nav-cta,
   .btn-primary {
     background: var(--night);
-    color: #f7f5ef;
+    color: #f7f4ee;
   }
   .nav-cta:hover,
   .btn-primary:hover {
@@ -125,10 +127,9 @@
     padding: 10px 16px;
     font-size: 13px;
     background: var(--night);
-    color: #f7f5ef;
+    color: #f7f4ee;
   }
-  .nav-mobile-cta:hover { background: var(--teal); transform: translateY(-1px); }
-  body[data-audience="specialists"] .nav-mobile-cta:hover { background: var(--accent); }
+  .nav-mobile-cta:hover { background: var(--accent); }
 
   section {
     max-width: 1160px;
@@ -138,12 +139,40 @@
 
   .hero {
     min-height: 100vh;
-    padding-top: 128px;
+    padding-top: 132px;
     padding-bottom: 72px;
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 460px);
+    grid-template-columns: minmax(0, 1.02fr) minmax(320px, 430px);
     gap: 56px;
     align-items: center;
+  }
+  .mode-switch {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.78);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+    width: min(420px, 100%);
+  }
+  .mode-btn {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    padding: 13px 16px;
+    border-radius: 999px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .mode-btn.active {
+    background: var(--night);
+    color: #f7f4ee;
   }
   .eyebrow {
     display: inline-flex;
@@ -157,7 +186,7 @@
     letter-spacing: 0.08em;
     font-size: 12px;
     font-weight: 700;
-    margin-bottom: 26px;
+    margin-bottom: 24px;
   }
   .eyebrow span {
     width: 7px;
@@ -165,36 +194,37 @@
     border-radius: 50%;
     background: currentColor;
   }
-  .hero h1,
+  h1,
   .section-title,
+  .case-title,
   .cta-title {
     font-family: var(--serif);
     font-weight: 400;
     letter-spacing: -0.04em;
     line-height: 1.04;
   }
-  .hero h1 {
-    font-size: clamp(44px, 6vw, 78px);
+  h1 {
+    font-size: clamp(44px, 6vw, 76px);
     max-width: 720px;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
   }
-  .hero h1 em,
+  h1 em,
   .section-title em,
   .cta-title em {
-    font-style: italic;
     color: var(--accent);
+    font-style: italic;
   }
-  .hero-text {
+  .hero-copy {
     font-size: 19px;
     color: var(--muted);
-    max-width: 600px;
-    margin-bottom: 34px;
+    max-width: 590px;
+    margin-bottom: 30px;
   }
   .hero-actions {
     display: flex;
     gap: 14px;
     flex-wrap: wrap;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
   }
   .btn-primary,
   .btn-secondary {
@@ -203,13 +233,13 @@
   }
   .btn-secondary {
     border: 1px solid var(--line);
-    background: rgba(255,255,255,0.46);
     color: var(--ink);
+    background: rgba(255,255,255,0.42);
   }
   .btn-secondary:hover {
     transform: translateY(-1px);
-    border-color: rgba(23,24,23,0.22);
-    background: rgba(255,255,255,0.8);
+    border-color: rgba(22,22,22,0.22);
+    background: rgba(255,255,255,0.76);
   }
   .hero-points {
     display: flex;
@@ -220,27 +250,23 @@
     padding: 11px 14px;
     border-radius: 999px;
     border: 1px solid var(--line);
-    background: rgba(255,255,255,0.48);
-    font-size: 13px;
+    background: rgba(255,255,255,0.45);
     color: var(--muted);
-  }
-  .hero-switch-wrap {
-    margin-bottom: 28px;
+    font-size: 13px;
   }
   .hero-aside {
     position: relative;
   }
-  .hero-panel {
-    background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.76) 100%);
-    border: 1px solid rgba(23,24,23,0.08);
+  .hero-frame {
+    background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.78) 100%);
+    border: 1px solid rgba(22,22,22,0.08);
     border-radius: 34px;
-    box-shadow: var(--shadow);
     overflow: hidden;
+    box-shadow: var(--shadow);
   }
   .hero-photo {
     aspect-ratio: 4 / 5;
-    overflow: hidden;
-    background: linear-gradient(135deg, #d6d2ca 0%, #eee9de 100%);
+    background: linear-gradient(135deg, #d9d2c8 0%, #efe8dc 100%);
   }
   .hero-photo img {
     width: 100%;
@@ -248,68 +274,68 @@
     object-fit: cover;
     object-position: center 18%;
   }
-  .hero-card-grid {
+  .hero-facts {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1px;
-    background: rgba(23,24,23,0.08);
+    background: rgba(22,22,22,0.08);
   }
-  .hero-mini-card {
-    background: rgba(255,255,255,0.78);
+  .hero-fact {
+    background: rgba(255,255,255,0.82);
     padding: 20px;
   }
-  .hero-mini-label {
+  .hero-fact-label {
     font-size: 12px;
     color: var(--muted-soft);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 10px;
   }
-  .hero-mini-value {
+  .hero-fact-value {
     font-family: var(--serif);
     font-size: 34px;
     line-height: 1;
     margin-bottom: 8px;
   }
-  .hero-mini-text {
+  .hero-fact-text {
     font-size: 13px;
     color: var(--muted);
   }
-  .floating-note {
+  .hero-note {
     position: absolute;
-    bottom: 26px;
-    left: -22px;
+    left: -18px;
+    bottom: 24px;
     width: min(250px, 72%);
-    padding: 18px 18px 16px;
-    background: var(--night);
-    color: #f7f5ef;
+    padding: 18px;
     border-radius: 22px;
-    box-shadow: 0 18px 50px rgba(21, 33, 29, 0.22);
+    background: var(--night);
+    color: #f7f4ee;
+    box-shadow: 0 22px 50px rgba(21, 33, 29, 0.22);
   }
-  .floating-note-label {
+  .hero-note-label {
     font-size: 11px;
-    letter-spacing: 0.08em;
+    color: rgba(247,244,238,0.58);
     text-transform: uppercase;
-    color: rgba(247,245,239,0.56);
+    letter-spacing: 0.08em;
     margin-bottom: 8px;
   }
-  .floating-note-text {
+  .hero-note-text {
+    font-family: var(--serif);
     font-size: 14px;
     line-height: 1.45;
-    font-family: var(--serif);
   }
 
   .section-head {
     display: flex;
-    align-items: end;
     justify-content: space-between;
+    align-items: end;
     gap: 24px;
     margin-bottom: 34px;
   }
   .section-kicker {
     font-size: 12px;
-    letter-spacing: 0.08em;
     text-transform: uppercase;
+    letter-spacing: 0.08em;
     color: var(--muted-soft);
     margin-bottom: 14px;
   }
@@ -323,173 +349,66 @@
     color: var(--muted);
   }
 
-  .audience-grid {
+  .problem-grid,
+  .service-grid,
+  .process-grid,
+  .trust-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-  }
-  .audience-switch {
-    display: inline-flex;
-    gap: 8px;
-    padding: 8px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.72);
-    border: 1px solid rgba(23,24,23,0.08);
-    box-shadow: var(--shadow);
-    margin-bottom: 22px;
-  }
-  .switch-btn {
-    border: none;
-    background: transparent;
-    color: var(--muted);
-    padding: 12px 18px;
-    border-radius: 999px;
-    font: inherit;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-  }
-  .switch-btn.active {
-    background: var(--night);
-    color: #f7f5ef;
-  }
-  .audience-card {
-    background: var(--card);
-    border: 1px solid rgba(23,24,23,0.08);
-    border-radius: 28px;
-    padding: 30px;
-    box-shadow: var(--shadow);
-  }
-  .audience-card.business {
-    background:
-      linear-gradient(180deg, rgba(228,245,241,0.82) 0%, rgba(255,255,255,0.9) 100%);
-  }
-  .audience-card.specialists {
-    background:
-      linear-gradient(180deg, rgba(252,240,226,0.86) 0%, rgba(255,255,255,0.92) 100%);
-  }
-  .audience-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 18px;
-  }
-  .audience-card.business .audience-tag { color: var(--teal); }
-  .audience-card.specialists .audience-tag { color: var(--amber); }
-  .audience-card h3 {
-    font-family: var(--serif);
-    font-size: 34px;
-    font-weight: 400;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-    margin-bottom: 14px;
-  }
-  .audience-card p {
-    font-size: 16px;
-    color: var(--muted);
-    margin-bottom: 24px;
-  }
-  .audience-list {
-    display: grid;
-    gap: 12px;
-  }
-  .audience-item {
-    display: grid;
-    grid-template-columns: 24px 1fr;
-    gap: 12px;
-    align-items: start;
-    font-size: 15px;
-    color: var(--ink);
-  }
-  .audience-item strong {
-    display: block;
-    margin-bottom: 2px;
-    font-weight: 500;
-  }
-  .audience-item span {
-    color: var(--muted);
-  }
-  .audience-icon {
-    width: 24px;
-    height: 24px;
-    border-radius: 999px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    margin-top: 1px;
-  }
-  .business .audience-icon { background: rgba(15,118,110,0.12); color: var(--teal); }
-  .specialists .audience-icon { background: rgba(184,106,31,0.14); color: var(--amber); }
-
-  .audience-card.is-inactive {
-    opacity: 0.52;
-    transform: scale(0.985);
-  }
-
-  .scenario-panel {
-    display: none;
-  }
-  .scenario-panel.active {
-    display: block;
-  }
-
-  .offers-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
   }
-  .offer-card,
+  .problem-grid,
+  .service-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .process-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .trust-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+  .card,
   .process-card,
-  .proof-card,
-  .format-card {
-    background: rgba(255,255,255,0.72);
-    border: 1px solid rgba(23,24,23,0.08);
+  .trust-card,
+  .case-card,
+  .about-card,
+  .contact-wrap {
+    background: var(--surface);
+    border: 1px solid rgba(22,22,22,0.08);
     border-radius: 24px;
     box-shadow: var(--shadow);
   }
-  .offer-card {
+  .card {
     padding: 26px;
   }
-  .offer-icon {
+  .card-icon {
     width: 46px;
     height: 46px;
     border-radius: 14px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    background: var(--accent-soft);
+    color: var(--accent);
     font-size: 22px;
-    background: var(--teal-soft);
     margin-bottom: 18px;
   }
-  .offer-card:nth-child(2) .offer-icon,
-  .offer-card:nth-child(5) .offer-icon { background: var(--amber-soft); }
-  .offer-card h3 {
+  .card h3 {
     font-size: 18px;
     margin-bottom: 10px;
   }
-  .offer-card p {
+  .card p {
     font-size: 14px;
     color: var(--muted);
   }
 
-  .process-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 14px;
-  }
   .process-card {
     padding: 24px;
   }
   .process-step {
     font-size: 12px;
     color: var(--muted-soft);
-    letter-spacing: 0.08em;
     text-transform: uppercase;
+    letter-spacing: 0.08em;
     margin-bottom: 16px;
   }
   .process-title {
@@ -503,20 +422,17 @@
     color: var(--muted);
   }
 
-  .proof-wrap {
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 18px;
-  }
-  .proof-lead {
-    background: linear-gradient(135deg, rgba(21,33,29,0.96), rgba(34,50,45,0.94));
-    color: #f7f5ef;
+  .trust-lead {
+    background: linear-gradient(145deg, rgba(21,33,29,0.98), rgba(34,51,45,0.96));
+    color: #f7f4ee;
     border-radius: 30px;
     padding: 34px;
-    box-shadow: 0 24px 70px rgba(21, 33, 29, 0.16);
+    box-shadow: 0 24px 70px rgba(21,33,29,0.16);
   }
-  .proof-lead .section-kicker { color: rgba(247,245,239,0.46); }
-  .proof-lead h3 {
+  .trust-lead .section-kicker {
+    color: rgba(247,244,238,0.5);
+  }
+  .trust-lead h3 {
     font-family: var(--serif);
     font-size: 40px;
     font-weight: 400;
@@ -524,90 +440,128 @@
     letter-spacing: -0.03em;
     margin-bottom: 18px;
   }
-  .proof-lead p {
-    color: rgba(247,245,239,0.72);
+  .trust-lead p {
     font-size: 15px;
+    color: rgba(247,244,238,0.72);
+    margin-bottom: 26px;
     max-width: 520px;
-    margin-bottom: 28px;
   }
-  .proof-stats {
+  .trust-stats {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1px;
-    background: rgba(247,245,239,0.14);
     border-radius: 18px;
     overflow: hidden;
+    background: rgba(247,244,238,0.12);
   }
-  .proof-stat {
+  .trust-stat {
+    background: rgba(247,244,238,0.06);
     padding: 18px 16px;
-    background: rgba(247,245,239,0.06);
   }
-  .proof-value {
+  .trust-value {
     font-family: var(--serif);
     font-size: 30px;
     line-height: 1;
     margin-bottom: 6px;
   }
-  .proof-label {
+  .trust-label {
     font-size: 12px;
-    color: rgba(247,245,239,0.62);
+    color: rgba(247,244,238,0.6);
   }
-  .proof-grid {
+  .trust-side {
     display: grid;
     gap: 14px;
   }
-  .proof-card {
+  .trust-card,
+  .case-card {
     padding: 24px;
   }
-  .proof-card h4 {
+  .trust-card h4,
+  .case-card h4 {
     font-size: 16px;
     margin-bottom: 8px;
   }
-  .proof-card p {
-    color: var(--muted);
+  .trust-card p,
+  .case-card p,
+  .case-list li {
     font-size: 14px;
+    color: var(--muted);
   }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(320px, 440px);
-    gap: 52px;
+  .case-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.78) 100%);
+  }
+  .case-tag {
+    display: inline-flex;
     align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+    font-weight: 700;
   }
-  .about-copy p {
-    font-size: 17px;
+  .case-title {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+  .case-copy {
+    font-size: 15px;
     color: var(--muted);
     margin-bottom: 18px;
   }
-  .about-copy strong { color: var(--ink); }
-  .about-notes {
+  .case-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .case-metric {
+    padding: 16px 14px;
+    border-radius: 18px;
+    background: rgba(var(--accent-rgb), 0.06);
+  }
+  .case-metric-value {
+    font-family: var(--serif);
+    font-size: 26px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .case-metric-label {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .case-list {
+    list-style: none;
     display: grid;
     gap: 10px;
-    margin-top: 26px;
   }
-  .about-note {
+  .case-list li {
     display: flex;
-    align-items: center;
     gap: 10px;
-    color: var(--muted);
-    font-size: 14px;
   }
-  .about-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--teal);
+  .case-list li::before {
+    content: "•";
+    color: var(--accent);
     flex-shrink: 0;
   }
-  .about-visual {
-    position: relative;
+
+  .about-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(320px, 430px);
+    gap: 52px;
+    align-items: center;
+  }
+  .about-card {
+    padding: 0;
+    overflow: hidden;
   }
   .about-photo {
     aspect-ratio: 1 / 1;
-    border-radius: 30px;
-    overflow: hidden;
-    background: linear-gradient(135deg, #dad5cc 0%, #f0ece4 100%);
-    box-shadow: var(--shadow);
+    background: linear-gradient(135deg, #d8d1c6 0%, #efe7da 100%);
   }
   .about-photo img {
     width: 100%;
@@ -615,83 +569,64 @@
     object-fit: cover;
     object-position: center 20%;
   }
-  .about-quote {
-    position: absolute;
-    bottom: -18px;
-    right: -18px;
-    max-width: 260px;
+  .about-copy p {
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .about-copy strong { color: var(--ink); }
+  .about-note {
+    margin-top: 26px;
+    padding: 18px 20px;
     border-radius: 22px;
-    background: #ffffff;
-    border: 1px solid rgba(23,24,23,0.08);
-    padding: 18px;
-    box-shadow: 0 20px 50px rgba(21, 33, 29, 0.14);
-  }
-  .about-quote p {
+    background: rgba(var(--accent-rgb), 0.06);
+    border: 1px solid rgba(var(--accent-rgb), 0.12);
     font-family: var(--serif);
-    font-size: 15px;
-    line-height: 1.42;
-    margin-bottom: 8px;
-  }
-  .about-quote span {
-    font-size: 12px;
-    color: var(--muted-soft);
+    font-size: 17px;
+    line-height: 1.45;
   }
 
-  .cta-wrap {
+  .contact-wrap {
     display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    border-radius: 30px;
+    grid-template-columns: 0.92fr 1.08fr;
     overflow: hidden;
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(23,24,23,0.08);
   }
-  .cta-panel {
+  .contact-lead {
     background: linear-gradient(150deg, #15211d 0%, #21322d 58%, #1d5a54 100%);
-    color: #f7f5ef;
+    color: #f7f4ee;
     padding: 42px 38px;
+  }
+  body[data-mode="specialists"] .contact-lead {
+    background: linear-gradient(150deg, #2b1f16 0%, #5d3a20 58%, #8f5626 100%);
   }
   .cta-title {
     font-size: clamp(34px, 4vw, 54px);
     margin-bottom: 18px;
   }
-  .cta-text {
-    color: rgba(247,245,239,0.72);
+  .cta-copy {
     font-size: 15px;
+    color: rgba(247,244,238,0.72);
     margin-bottom: 28px;
     max-width: 460px;
   }
-  .format-stack {
+  .cta-points {
     display: grid;
     gap: 12px;
   }
-  .format-card {
+  .cta-point {
     padding: 16px;
-    background: rgba(247,245,239,0.06);
-    border-color: rgba(247,245,239,0.12);
-    cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease;
+    border-radius: 18px;
+    background: rgba(247,244,238,0.06);
+    border: 1px solid rgba(247,244,238,0.1);
   }
-  .format-card.active {
-    background: rgba(134, 223, 209, 0.14);
-    border-color: rgba(134, 223, 209, 0.42);
-  }
-  .format-head {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  .format-emoji {
-    font-size: 19px;
-    margin-top: 1px;
-  }
-  .format-title {
+  .cta-point-title {
     font-size: 15px;
     font-weight: 500;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
-  .format-meta {
+  .cta-point-text {
     font-size: 12px;
-    color: rgba(247,245,239,0.54);
+    color: rgba(247,244,238,0.58);
   }
   .form-panel {
     background: rgba(255,255,255,0.88);
@@ -723,10 +658,10 @@
   }
   .form-input {
     width: 100%;
-    border: 1px solid rgba(23,24,23,0.12);
-    border-radius: 16px;
-    background: rgba(247,245,239,0.7);
     padding: 13px 15px;
+    border-radius: 16px;
+    border: 1px solid rgba(22,22,22,0.12);
+    background: rgba(247,243,235,0.72);
     font: inherit;
     color: var(--ink);
     outline: none;
@@ -751,9 +686,9 @@
   }
   .form-note {
     margin-top: 12px;
-    font-size: 12px;
-    color: var(--muted-soft);
     text-align: center;
+    color: var(--muted-soft);
+    font-size: 12px;
   }
   .form-success {
     display: none;
@@ -799,13 +734,13 @@
   }
   .footer-links {
     display: flex;
-    gap: 18px;
     align-items: center;
+    gap: 18px;
     flex-wrap: wrap;
   }
   .footer-links a {
-    color: var(--muted);
     text-decoration: none;
+    color: var(--muted);
     font-size: 14px;
   }
   .footer-links a:hover { color: var(--ink); }
@@ -826,34 +761,27 @@
     .nav-mobile-cta { display: inline-flex; }
     section { padding: 80px 20px; }
     .hero,
-    .proof-wrap,
-    .about-grid,
-    .cta-wrap {
+    .trust-grid,
+    .about-wrap,
+    .contact-wrap {
       grid-template-columns: 1fr;
     }
-    .hero { min-height: auto; padding-top: 112px; }
+    .hero { min-height: auto; padding-top: 116px; }
     .hero-aside { order: -1; }
-    .hero-card-grid { grid-template-columns: 1fr; }
-    .floating-note {
+    .hero-facts,
+    .problem-grid,
+    .service-grid,
+    .process-grid,
+    .case-metrics {
+      grid-template-columns: 1fr;
+    }
+    .hero-note {
       position: static;
       width: 100%;
       margin-top: 14px;
-      left: auto;
-      bottom: auto;
     }
-    .audience-grid,
-    .offers-grid,
-    .process-grid {
-      grid-template-columns: 1fr;
-    }
-    .audience-switch {
+    .mode-switch {
       width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-    .switch-btn {
-      width: 100%;
-      padding: 12px 10px;
     }
     .section-head {
       flex-direction: column;
@@ -861,25 +789,20 @@
       margin-bottom: 28px;
     }
     .section-copy { max-width: none; }
-    .proof-stats { grid-template-columns: 1fr; }
+    .trust-stats { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
-    .about-quote {
-      position: static;
-      margin-top: 14px;
-      max-width: none;
-    }
   }
 </style>
 </head>
-<body>
+<body data-mode="business">
 
 <nav id="navbar">
   <a href="#" class="nav-logo">Павел Васильев</a>
   <div class="nav-links">
-    <a href="#audiences">Кому</a>
-    <a href="#offers">Что делаю</a>
-    <a href="#process">Как работаю</a>
-    <a href="#about">О себе</a>
+    <a href="#problems">Задачи</a>
+    <a href="#services">Форматы</a>
+    <a href="#process">Процесс</a>
+    <a href="#proof">Доверие</a>
     <a href="#contact" class="nav-cta">Оставить запрос</a>
   </div>
   <a href="#contact" class="nav-mobile-cta">Запрос</a>
@@ -887,308 +810,140 @@
 
 <section class="hero">
   <div class="fade-up">
-    <div class="hero-switch-wrap">
-      <div class="audience-switch" aria-label="Выбор сценария">
-        <button class="switch-btn active" type="button" data-audience-switch="business" onclick="setAudience('business')">Для бизнеса</button>
-        <button class="switch-btn" type="button" data-audience-switch="specialists" onclick="setAudience('specialists')">Для специалистов</button>
-      </div>
+    <div class="mode-switch" aria-label="Выбор сценария">
+      <button class="mode-btn active" type="button" data-mode-btn="business">Для бизнеса</button>
+      <button class="mode-btn" type="button" data-mode-btn="specialists">Для специалистов</button>
     </div>
 
-    <div class="scenario-panel active" data-scenario="business">
-      <div class="eyebrow"><span></span>AI-автоматизация · консалтинг · воркшопы</div>
-      <h1>Помогаю внедрять <em>AI и автоматизацию</em> в реальные процессы бизнеса</h1>
-      <p class="hero-text">
-        Без магии и шума вокруг нейросетей. Разбираю, где автоматизация действительно экономит время, ускоряет команду и убирает ручную рутину, а где лучше не усложнять.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Обсудить задачу</a>
-        <a href="#offers" class="btn-secondary">Посмотреть форматы</a>
-      </div>
-      <div class="hero-points">
-        <div class="hero-point">AI-решения под реальные задачи</div>
-        <div class="hero-point">Воркшопы и обучение команд</div>
-        <div class="hero-point">Аудит процессов и пилоты</div>
-        <div class="hero-point">Без сложного техно-жаргона</div>
-      </div>
+    <div class="eyebrow"><span></span><span id="hero-eyebrow-text">AI-автоматизация · консалтинг · воркшопы</span></div>
+    <h1 id="hero-title">Помогаю внедрять <em>AI и автоматизацию</em> в реальные процессы бизнеса</h1>
+    <p class="hero-copy" id="hero-copy">Без магии и шума вокруг нейросетей. Разбираю, где автоматизация действительно экономит время, ускоряет команду и убирает ручную рутину, а где лучше не усложнять.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary" id="hero-primary">Обсудить задачу</a>
+      <a href="#services" class="btn-secondary" id="hero-secondary">Посмотреть форматы</a>
     </div>
-
-    <div class="scenario-panel" data-scenario="specialists">
-      <div class="eyebrow"><span></span>AI-инструменты · консультации · практическая настройка</div>
-      <h1>Помогаю специалистам встроить <em>AI в ежедневную работу</em></h1>
-      <p class="hero-text">
-        Не курс ради курса, а прикладной разбор твоих задач. Смотрим, что можно ускорить, автоматизировать и упростить уже сейчас, без лишней сложности.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Разобрать мою задачу</a>
-        <a href="#offers" class="btn-secondary">Посмотреть форматы</a>
-      </div>
-      <div class="hero-points">
-        <div class="hero-point">Личный разбор рабочего процесса</div>
-        <div class="hero-point">Промпты и сценарии под задачу</div>
-        <div class="hero-point">Мини-внедрение на встрече</div>
-        <div class="hero-point">Понятный вход без хаоса</div>
-      </div>
-    </div>
+    <div class="hero-points" id="hero-points"></div>
   </div>
 
   <div class="hero-aside fade-up" style="transition-delay:0.1s">
-    <div class="hero-panel">
+    <div class="hero-frame">
       <div class="hero-photo">
         <img src="pavel-portrait-2026.jpg" alt="Павел Васильев">
       </div>
-      <div class="hero-card-grid">
-        <div class="hero-mini-card">
-          <div class="hero-mini-label">Опыт</div>
-          <div class="hero-mini-value">15+</div>
-          <div class="hero-mini-text">лет в маркетинге, CRM и управлении коммуникациями</div>
+      <div class="hero-facts">
+        <div class="hero-fact">
+          <div class="hero-fact-label">Опыт</div>
+          <div class="hero-fact-value">15+</div>
+          <div class="hero-fact-text">лет в маркетинге, CRM и управлении коммуникациями</div>
         </div>
-        <div class="hero-mini-card">
-          <div class="hero-mini-label">Фокус</div>
-          <div class="hero-mini-value">AI</div>
-          <div class="hero-mini-text">внедрение в процессы, обучение, практическая автоматизация</div>
+        <div class="hero-fact">
+          <div class="hero-fact-label">Фокус</div>
+          <div class="hero-fact-value" id="hero-fact-value">AI</div>
+          <div class="hero-fact-text" id="hero-fact-text">внедрение в процессы, обучение, практическая автоматизация</div>
         </div>
       </div>
     </div>
-    <div class="floating-note">
-      <div class="floating-note-label" id="floating-note-label">Подход</div>
-      <div class="floating-note-text" id="floating-note-text">«Не просто показать нейросеть, а встроить её в работу так, чтобы стало быстрее, понятнее и выгоднее»</div>
+    <div class="hero-note">
+      <div class="hero-note-label" id="hero-note-label">Подход</div>
+      <div class="hero-note-text" id="hero-note-text">Не просто показать инструмент, а встроить его в работу так, чтобы стало быстрее, понятнее и выгоднее.</div>
     </div>
   </div>
 </section>
 
-<section id="audiences">
+<section id="problems">
   <div class="section-head fade-up">
     <div>
-      <div class="section-kicker">Формат работы</div>
-      <h2 class="section-title">Два разных сценария: <em>для команды</em> и <em>для личной практики</em></h2>
+      <div class="section-kicker">С чем я помогаю</div>
+      <h2 class="section-title" id="problems-title">Задачи, где нужен не шум вокруг AI, а <em>понятный прикладной результат</em></h2>
     </div>
-    <p class="section-copy">
-      Для компании важны внедрение и обучение команды. Для специалиста важны личная задача, быстрый разбор и способ применить AI в своей ежедневной работе.
-    </p>
+    <p class="section-copy" id="problems-copy">Обычно запрос звучит не как «внедрить искусственный интеллект», а как конкретная проблема: долго, неудобно, хаотично, дорого по времени или тяжело масштабируется.</p>
   </div>
-
-  <div class="audience-grid">
-    <article class="audience-card business fade-up" data-audience-card="business">
-      <div class="audience-tag">Для бизнеса</div>
-      <h3>Когда команде нужен не хайп, а рабочая система</h3>
-      <p>Подходит компаниям, которые хотят понять, где AI реально помогает в операционке, маркетинге, клиентском сервисе или внутренних процессах.</p>
-      <div class="audience-list">
-        <div class="audience-item">
-          <div class="audience-icon">01</div>
-          <div><strong>AI-воркшоп для команды</strong><span>Практическая сессия под вашу роль, процессы и уровень подготовки сотрудников.</span></div>
-        </div>
-        <div class="audience-item">
-          <div class="audience-icon">02</div>
-          <div><strong>Аудит процессов</strong><span>Ищу, где есть ручная рутина, долгие согласования, повторяемые действия и узкие места.</span></div>
-        </div>
-        <div class="audience-item">
-          <div class="audience-icon">03</div>
-          <div><strong>План внедрения</strong><span>Собираю понятную карту: что автоматизировать сначала, чем, с какими рисками и какой ожидаемой пользой.</span></div>
-        </div>
-      </div>
-    </article>
-
-    <article class="audience-card specialists fade-up is-inactive" style="transition-delay:0.08s" data-audience-card="specialists">
-      <div class="audience-tag">Для специалистов</div>
-      <h3>Когда хочется самому начать использовать AI сильнее</h3>
-      <p>Для маркетологов, менеджеров, продактов, фаундеров и специалистов, которые хотят перестать делать всё вручную и собрать свою рабочую систему.</p>
-      <div class="audience-list">
-        <div class="audience-item">
-          <div class="audience-icon">01</div>
-          <div><strong>Личная консультация</strong><span>Разбираем текущую задачу, инструменты и подбираем подход под твой контекст.</span></div>
-        </div>
-        <div class="audience-item">
-          <div class="audience-icon">02</div>
-          <div><strong>Разбор конкретного процесса</strong><span>Например: контент, продажи, CRM, исследование, аналитика, документы, коммуникации.</span></div>
-        </div>
-        <div class="audience-item">
-          <div class="audience-icon">03</div>
-          <div><strong>Мини-внедрение</strong><span>На встрече или после неё собираем простой, но уже работающий сценарий автоматизации под задачу.</span></div>
-        </div>
-      </div>
-    </article>
-  </div>
+  <div class="problem-grid" id="problem-grid"></div>
 </section>
 
-<section id="offers">
+<section id="services">
   <div class="section-head fade-up">
     <div>
-      <div class="section-kicker">Что можно заказать</div>
-      <h2 class="section-title">У каждого направления свой <em>набор услуг</em></h2>
+      <div class="section-kicker">Форматы работы</div>
+      <h2 class="section-title" id="services-title">Подбираю формат не под модное слово, а под <em>контекст и задачу</em></h2>
     </div>
-    <p class="section-copy">
-      Формат подбирается под контекст: бизнесу нужны внедренческие задачи и командная работа, специалистам нужен более точный и личный разбор.
-    </p>
+    <p class="section-copy" id="services-copy">Кому-то нужен воркшоп для команды, кому-то разбор одного процесса, а кому-то аккуратный первый пилот без лишней архитектуры.</p>
   </div>
-
-  <div class="scenario-panel active" data-scenario="business">
-    <div class="offers-grid">
-      <article class="offer-card fade-up">
-        <div class="offer-icon">🧭</div>
-        <h3>AI-аудит процессов</h3>
-        <p>Короткий диагностический разбор: где в компании теряется время, что можно автоматизировать уже сейчас и что точно не стоит трогать.</p>
-      </article>
-      <article class="offer-card fade-up" style="transition-delay:0.05s">
-        <div class="offer-icon">🎓</div>
-        <h3>Воркшоп для команды</h3>
-        <p>Живая сессия для отдела или кросс-функциональной команды: сценарии применения AI, упражнения и разбор ваших кейсов.</p>
-      </article>
-      <article class="offer-card fade-up" style="transition-delay:0.1s">
-        <div class="offer-icon">⚙️</div>
-        <h3>Проектирование автоматизации</h3>
-        <p>Собираю логику процесса: входящие данные, шаги, роли, промпты, точки контроля и инструменты, которые лучше всего подойдут.</p>
-      </article>
-      <article class="offer-card fade-up">
-        <div class="offer-icon">🧪</div>
-        <h3>Пилот под конкретную задачу</h3>
-        <p>Быстрый тест на одном процессе: контент, клиентские ответы, аналитика, внутренние регламенты, маркетинговые рутины.</p>
-      </article>
-      <article class="offer-card fade-up" style="transition-delay:0.05s">
-        <div class="offer-icon">📚</div>
-        <h3>Обучение руководителей и команд</h3>
-        <p>Отдельный формат для тех, кому важно не только внедрить инструмент, но и научить людей пользоваться им осмысленно.</p>
-      </article>
-      <article class="offer-card fade-up" style="transition-delay:0.1s">
-        <div class="offer-icon">🤝</div>
-        <h3>Сопровождение внедрения</h3>
-        <p>Подходит тем, кому нужен не разовый совет, а несколько итераций, обратная связь и помощь при запуске первых сценариев.</p>
-      </article>
-    </div>
-  </div>
-
-  <div class="scenario-panel" data-scenario="specialists">
-    <div class="offers-grid">
-      <article class="offer-card fade-up">
-        <div class="offer-icon">🧠</div>
-        <h3>Личная консультация</h3>
-        <p>Один на один разбираем задачу и собираем способ работать быстрее: от выбора инструментов до практики применения в ежедневной работе.</p>
-      </article>
-      <article class="offer-card fade-up" style="transition-delay:0.05s">
-        <div class="offer-icon">🔎</div>
-        <h3>Разбор рабочего процесса</h3>
-        <p>Смотрим конкретную рутину: контент, исследования, документы, аналитика, коммуникации, CRM или продажи.</p>
-      </article>
-      <article class="offer-card fade-up" style="transition-delay:0.1s">
-        <div class="offer-icon">⚡</div>
-        <h3>Сборка личной системы</h3>
-        <p>Подбираем инструменты, шаблоны и логику работы, чтобы AI стал частью твоего ежедневного процесса, а не редким экспериментом.</p>
-      </article>
-      <article class="offer-card fade-up">
-        <div class="offer-icon">✍️</div>
-        <h3>Промпты и сценарии под задачу</h3>
-        <p>Собираем конкретные рабочие шаблоны: не абстрактные «подсказки для ChatGPT», а прикладные штуки под твою роль.</p>
-      </article>
-      <article class="offer-card fade-up" style="transition-delay:0.05s">
-        <div class="offer-icon">🛠️</div>
-        <h3>Мини-внедрение на встрече</h3>
-        <p>Если задача простая, можем сразу на сессии собрать первый рабочий сценарий и проверить, как он ведёт себя в деле.</p>
-      </article>
-      <article class="offer-card fade-up" style="transition-delay:0.1s">
-        <div class="offer-icon">📈</div>
-        <h3>Пакет из нескольких встреч</h3>
-        <p>Для тех, кому нужно не только понять тему, но и дойти до устойчивого нового способа работы через несколько итераций.</p>
-      </article>
-    </div>
-  </div>
+  <div class="service-grid" id="service-grid"></div>
 </section>
 
 <section id="process">
   <div class="section-head fade-up">
     <div>
       <div class="section-kicker">Как проходит работа</div>
-      <h2 class="section-title">И маршрут к результату тоже <em>разный</em></h2>
+      <h2 class="section-title" id="process-title">Путь к результату должен быть <em>простым и прозрачным</em></h2>
     </div>
+    <p class="section-copy" id="process-copy">Без сложной многоэтажной схемы. Сначала контекст, потом формат, затем решение и только после этого внедрение или сопровождение.</p>
   </div>
-
-  <div class="scenario-panel active" data-scenario="business">
-    <div class="process-grid">
-      <article class="process-card fade-up">
-        <div class="process-step">Шаг 1</div>
-        <div class="process-title">Созвон и контекст</div>
-        <p>Сначала разбираемся, что у вас происходит сейчас, кто участники процесса, где рутина и где реальная боль.</p>
-      </article>
-      <article class="process-card fade-up" style="transition-delay:0.05s">
-        <div class="process-step">Шаг 2</div>
-        <div class="process-title">Приоритет и формат</div>
-        <p>Выбираем: воркшоп, аудит, пилот или сопровождение. Смотрим, что даст понятный эффект быстрее всего.</p>
-      </article>
-      <article class="process-card fade-up" style="transition-delay:0.1s">
-        <div class="process-step">Шаг 3</div>
-        <div class="process-title">Сценарий внедрения</div>
-        <p>Собираем логику внедрения: инструменты, шаги, роли, ограничения, обучение и контроль качества результата.</p>
-      </article>
-      <article class="process-card fade-up" style="transition-delay:0.15s">
-        <div class="process-step">Шаг 4</div>
-        <div class="process-title">Запуск и корректировка</div>
-        <p>Если нужно, помогаю запустить пилот, обучить команду или скорректировать систему после первых недель использования.</p>
-      </article>
-    </div>
-  </div>
-
-  <div class="scenario-panel" data-scenario="specialists">
-    <div class="process-grid">
-      <article class="process-card fade-up">
-        <div class="process-step">Шаг 1</div>
-        <div class="process-title">Запрос</div>
-        <p>Ты описываешь свою роль, задачу и текущий затык: что хочется ускорить, автоматизировать или упростить.</p>
-      </article>
-      <article class="process-card fade-up" style="transition-delay:0.05s">
-        <div class="process-step">Шаг 2</div>
-        <div class="process-title">Разбор на встрече</div>
-        <p>Мы вместе смотрим на процесс, выбираем адекватные инструменты и сразу отсекаем лишнее.</p>
-      </article>
-      <article class="process-card fade-up" style="transition-delay:0.1s">
-        <div class="process-step">Шаг 3</div>
-        <div class="process-title">Сборка сценария</div>
-        <p>Формируем конкретный рабочий способ: промпты, шаги, структура задачи, автоматизация или связка сервисов.</p>
-      </article>
-      <article class="process-card fade-up" style="transition-delay:0.15s">
-        <div class="process-step">Шаг 4</div>
-        <div class="process-title">Применение в работе</div>
-        <p>После сессии у тебя остаётся не только понимание темы, но и реальный способ использовать AI в ежедневной практике.</p>
-      </article>
-    </div>
-  </div>
+  <div class="process-grid" id="process-grid"></div>
 </section>
 
 <section id="proof">
-  <div class="proof-wrap">
-    <div class="proof-lead fade-up">
-      <div class="section-kicker">Почему это может сработать</div>
-      <h3>Я прихожу в AI не из теории, а из <em>реальных бизнес-процессов</em></h3>
-      <p>
-        У меня сильная база в маркетинге, CRM, коммуникациях и управлении. Поэтому я смотрю на AI не как на отдельную игрушку, а как на слой, который должен встраиваться в существующую работу и приносить полезный результат.
-      </p>
-      <div class="proof-stats">
-        <div class="proof-stat">
-          <div class="proof-value">15+</div>
-          <div class="proof-label">лет в маркетинге и операционной реальности бизнеса</div>
+  <div class="trust-grid">
+    <div class="trust-lead fade-up">
+      <div class="section-kicker">Почему мне можно доверять</div>
+      <h3 id="trust-title">Я прихожу в AI не из теории, а из <em>реальных бизнес-процессов</em></h3>
+      <p id="trust-copy">У меня сильная база в маркетинге, CRM, коммуникациях и управлении. Поэтому я смотрю на AI не как на отдельную игрушку, а как на рабочий слой, который должен приносить понятную пользу.</p>
+      <div class="trust-stats">
+        <div class="trust-stat">
+          <div class="trust-value">15+</div>
+          <div class="trust-label">лет в маркетинге и операционной реальности бизнеса</div>
         </div>
-        <div class="proof-stat">
-          <div class="proof-value">20M</div>
-          <div class="proof-label">максимальный размер базы и сложных коммуникационных систем в опыте</div>
+        <div class="trust-stat">
+          <div class="trust-value">20M</div>
+          <div class="trust-label">максимальный размер базы и сложных коммуникационных систем в опыте</div>
         </div>
-        <div class="proof-stat">
-          <div class="proof-value">10+</div>
-          <div class="proof-label">крупных брендов и высоконагруженных задач в портфеле</div>
+        <div class="trust-stat">
+          <div class="trust-value">10+</div>
+          <div class="trust-label">крупных брендов и высоконагруженных задач в портфеле</div>
         </div>
       </div>
     </div>
 
-    <div class="proof-grid">
-      <article class="proof-card fade-up" style="transition-delay:0.05s">
-        <h4>Понимаю команды, а не только инструменты</h4>
-        <p>Могу говорить и с руководителем, и со специалистом. Это важно, когда внедрение упирается не в нейросеть, а в людей, роли и привычки.</p>
-      </article>
-      <article class="proof-card fade-up" style="transition-delay:0.1s">
-        <h4>Люблю прикладной результат</h4>
-        <p>Если задача решается без сложной автоматизации, я лучше предложу простой путь, чем буду продавать лишнюю архитектуру.</p>
-      </article>
-      <article class="proof-card fade-up" style="transition-delay:0.15s">
-        <h4>Умею объяснять спокойно и по делу</h4>
-        <p>Для бизнеса это снижает страх перед новой темой, а для специалистов делает вход в AI-инструменты быстрее и менее хаотичным.</p>
-      </article>
+    <div class="trust-side">
+      <div class="trust-card fade-up" style="transition-delay:0.05s">
+        <h4 id="trust-side-title-1">Понимаю не только инструменты, но и людей</h4>
+        <p id="trust-side-copy-1">Могу говорить и с руководителем, и со специалистом. Это важно, когда внедрение упирается не в нейросеть, а в роли, процессы и привычки команды.</p>
+      </div>
+      <div class="trust-card fade-up" style="transition-delay:0.1s">
+        <h4 id="trust-side-title-2">Люблю прикладной результат</h4>
+        <p id="trust-side-copy-2">Если задача решается без сложной автоматизации, я лучше предложу простой путь, чем буду продавать лишнюю архитектуру.</p>
+      </div>
+      <div class="trust-card fade-up" style="transition-delay:0.15s">
+        <h4 id="trust-side-title-3">Умею объяснять спокойно и по делу</h4>
+        <p id="trust-side-copy-3">Для бизнеса это снижает страх перед новой темой, а для специалистов делает вход в AI-инструменты быстрее и менее хаотичным.</p>
+      </div>
     </div>
+  </div>
+
+  <div class="case-card fade-up" style="margin-top:18px;">
+    <div class="case-tag">Кейс · placeholder</div>
+    <div class="case-title">Оптимизация отчёта NPS</div>
+    <p class="case-copy">Пока оставляю здесь каркас под твой кейс. Когда пришлёшь фактические цифры и контекст, я быстро превращу этот блок в полноценный доказательный кейс.</p>
+    <div class="case-metrics">
+      <div class="case-metric">
+        <div class="case-metric-value">X%</div>
+        <div class="case-metric-label">сокращение времени на подготовку</div>
+      </div>
+      <div class="case-metric">
+        <div class="case-metric-value">Y ч</div>
+        <div class="case-metric-label">экономия ручной работы в цикл</div>
+      </div>
+      <div class="case-metric">
+        <div class="case-metric-value">Z</div>
+        <div class="case-metric-label">шагов автоматизировано</div>
+      </div>
+    </div>
+    <ul class="case-list">
+      <li>Контекст: ручная сборка данных и подготовка отчёта занимали слишком много времени.</li>
+      <li>Что было сделано: пересобран процесс подготовки, автоматизированы повторяющиеся шаги и структура отчёта.</li>
+      <li>Что это дало: быстрее собирать отчёт, меньше ручных ошибок и более удобный процесс для команды.</li>
+    </ul>
   </div>
 </section>
 
@@ -1196,141 +951,37 @@
   <div class="section-head fade-up">
     <div>
       <div class="section-kicker">О Павле</div>
-      <h2 class="section-title">Не технарь-теоретик, а человек, который умеет переводить <em>сложное в рабочее</em></h2>
+      <h2 class="section-title" id="about-title">Не технарь-теоретик, а человек, который умеет переводить <em>сложное в рабочее</em></h2>
     </div>
   </div>
-
-  <div class="about-grid">
+  <div class="about-wrap">
     <div class="about-copy fade-up">
-      <p>
-        Более 15 лет я работаю на стыке <strong>маркетинга, CRM, коммуникаций и управленческих задач</strong>. Это даёт важную оптику: я вижу не просто инструмент, а контекст бизнеса, нагрузку на команду и стоимость ошибок.
-      </p>
-      <p>
-        Сейчас мне интересно направление, где AI помогает компаниям и специалистам работать умнее: быстрее собирать материалы, систематизировать знания, автоматизировать повторяющиеся действия и ускорять принятие решений.
-      </p>
-      <p>
-        Мне ближе спокойный и взрослый подход: без «нейросеть всё сделает сама», зато с понятной пользой, конкретным сценарием и здравой логикой внедрения.
-      </p>
-      <div class="about-notes">
-        <div class="about-note"><span class="about-dot"></span><span>Веду разговор простым языком, без лишнего пафоса</span></div>
-        <div class="about-note"><span class="about-dot"></span><span>Могу работать и с руководителем, и с отдельным специалистом</span></div>
-        <div class="about-note"><span class="about-dot"></span><span>Люблю решения, которые упрощают жизнь, а не создают новую сложность</span></div>
-      </div>
+      <p id="about-copy-1">Более 15 лет я работаю на стыке маркетинга, CRM, коммуникаций и управленческих задач. Это даёт важную оптику: я вижу не просто инструмент, а контекст бизнеса, нагрузку на команду и стоимость ошибок.</p>
+      <p id="about-copy-2">Сейчас мне интересно направление, где AI помогает компаниям и специалистам работать умнее: быстрее собирать материалы, систематизировать знания, автоматизировать повторяющиеся действия и ускорять принятие решений.</p>
+      <p id="about-copy-3">Мне ближе спокойный и взрослый подход: без «нейросеть всё сделает сама», зато с понятной пользой, конкретным сценарием и здравой логикой внедрения.</p>
+      <div class="about-note" id="about-note">Хорошая автоматизация не заменяет мышление. Она убирает рутину, чтобы у команды или специалиста осталось больше сил на важное.</div>
     </div>
-
-    <div class="about-visual fade-up" style="transition-delay:0.08s">
+    <div class="about-card fade-up" style="transition-delay:0.08s">
       <div class="about-photo">
         <img src="pavel-about-portrait-2026.jpg" alt="Павел Васильев">
-      </div>
-      <div class="about-quote">
-        <p>«Хорошая автоматизация не заменяет мышление. Она убирает рутину, чтобы у команды осталось больше сил на важное.»</p>
-        <span>Павел Васильев</span>
       </div>
     </div>
   </div>
 </section>
 
 <section id="contact">
-  <div class="cta-wrap fade-up">
-    <div class="cta-panel">
-      <div class="section-kicker">Старт</div>
-      <div class="scenario-panel active" data-scenario="business">
-        <h2 class="cta-title">Для бизнеса: можно начать с <em>короткого брифа</em></h2>
-        <p class="cta-text">
-          Опиши команду, процесс и задачу. Я пойму, что вам больше подходит: воркшоп, аудит, пилот или сопровождение внедрения.
-        </p>
-
-        <div class="format-stack">
-          <div class="format-card active" onclick="selectFormat(this, 'business_workshop')">
-            <div class="format-head">
-              <div class="format-emoji">🏢</div>
-              <div>
-                <div class="format-title">Воркшоп для бизнеса</div>
-                <div class="format-meta">Команда · обучение · практика на ваших кейсах</div>
-              </div>
-            </div>
-          </div>
-          <div class="format-card" onclick="selectFormat(this, 'process_audit')">
-            <div class="format-head">
-              <div class="format-emoji">🧭</div>
-              <div>
-                <div class="format-title">Аудит и карта автоматизации</div>
-                <div class="format-meta">Разбор процессов · точки роста · приоритеты</div>
-              </div>
-            </div>
-          </div>
-          <div class="format-card" onclick="selectFormat(this, 'business_pilot')">
-            <div class="format-head">
-              <div class="format-emoji">🧪</div>
-              <div>
-                <div class="format-title">Пилот на одном процессе</div>
-                <div class="format-meta">Быстрый тест · гипотеза · проверка эффекта</div>
-              </div>
-            </div>
-          </div>
-          <div class="format-card" onclick="selectFormat(this, 'support')">
-            <div class="format-head">
-              <div class="format-emoji">🤝</div>
-              <div>
-                <div class="format-title">Сопровождение внедрения</div>
-                <div class="format-meta">Несколько итераций · помощь в запуске · обратная связь</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="scenario-panel" data-scenario="specialists">
-        <h2 class="cta-title">Для специалистов: можно начать с <em>своей задачи</em></h2>
-        <p class="cta-text">
-          Опиши, что именно хочешь ускорить или автоматизировать. Я пойму, нужен ли тебе разовый разбор, мини-внедрение или несколько встреч.
-        </p>
-
-        <div class="format-stack">
-          <div class="format-card active" onclick="selectFormat(this, 'specialist_consult')">
-            <div class="format-head">
-              <div class="format-emoji">🧠</div>
-              <div>
-                <div class="format-title">Консультация для специалиста</div>
-                <div class="format-meta">Личный разбор задачи · инструменты · практический сценарий</div>
-              </div>
-            </div>
-          </div>
-          <div class="format-card" onclick="selectFormat(this, 'specialist_process')">
-            <div class="format-head">
-              <div class="format-emoji">🔎</div>
-              <div>
-                <div class="format-title">Разбор одного процесса</div>
-                <div class="format-meta">Контент · аналитика · документы · коммуникации</div>
-              </div>
-            </div>
-          </div>
-          <div class="format-card" onclick="selectFormat(this, 'specialist_setup')">
-            <div class="format-head">
-              <div class="format-emoji">🛠️</div>
-              <div>
-                <div class="format-title">Мини-внедрение на встрече</div>
-                <div class="format-meta">Сразу собираем первый рабочий сценарий</div>
-              </div>
-            </div>
-          </div>
-          <div class="format-card" onclick="selectFormat(this, 'specialist_package')">
-            <div class="format-head">
-              <div class="format-emoji">📈</div>
-              <div>
-                <div class="format-title">Пакет из нескольких встреч</div>
-                <div class="format-meta">Для более устойчивой перестройки способа работы</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="contact-wrap fade-up">
+    <div class="contact-lead">
+      <div class="section-kicker">Следующий шаг</div>
+      <h2 class="cta-title" id="cta-title">Можно начать с <em>короткого брифа</em></h2>
+      <p class="cta-copy" id="cta-copy">Опиши команду, процесс и задачу. Я пойму, что вам больше подходит: воркшоп, аудит, пилот или сопровождение.</p>
+      <div class="cta-points" id="cta-points"></div>
     </div>
 
     <div class="form-panel">
       <div id="booking-form-wrap">
-        <h3 class="form-title">Оставить запрос</h3>
-        <p class="form-subtitle" id="form-subtitle">Отвечу, какой формат подойдёт лучше всего, и предложу следующий шаг</p>
+        <h3 class="form-title" id="form-title">Оставить запрос</h3>
+        <p class="form-subtitle" id="form-subtitle">Оставьте короткий бриф по команде и процессу. Я предложу подходящий формат работы.</p>
 
         <div class="form-row">
           <div class="form-group">
@@ -1350,17 +1001,12 @@
 
         <div class="form-group">
           <label class="form-label">Формат</label>
-          <select class="form-input" id="f-format">
-            <option value="business_workshop">Воркшоп для бизнеса</option>
-            <option value="process_audit">Аудит и карта автоматизации</option>
-            <option value="specialist_consult">Консультация для специалиста</option>
-            <option value="support">Сопровождение внедрения</option>
-          </select>
+          <select class="form-input" id="f-format"></select>
         </div>
 
         <div class="form-group">
           <label class="form-label">Что за задача</label>
-          <textarea class="form-input" id="f-message" placeholder="Кто вы, какой процесс или задача вас интересует, что хотите улучшить с помощью AI или автоматизации"></textarea>
+          <textarea class="form-input" id="f-message" placeholder=""></textarea>
         </div>
 
         <button class="btn-primary form-submit" id="form-submit-btn" onclick="submitForm()">Отправить запрос</button>
@@ -1380,7 +1026,7 @@
   <div class="footer-inner">
     <div>
       <div class="footer-name">Павел Васильев</div>
-      <div class="footer-role">AI-автоматизация · консалтинг · воркшопы для бизнеса и специалистов</div>
+      <div class="footer-role">AI-автоматизация · консалтинг · практические воркшопы и разборы</div>
     </div>
     <div class="footer-links">
       <a href="https://t.me/utochkirosta" target="_blank">Telegram-канал</a>
@@ -1392,7 +1038,159 @@
 
 <script>
   const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwUaVSd9Dq5WsHidld6lvTubfXCOUBDBsXDgKPNcyr5xFRJsy8uVuy0_rNX9cKvArv0/exec';
-  let currentAudience = 'business';
+
+  const content = {
+    business: {
+      eyebrow: 'AI-автоматизация · консалтинг · воркшопы',
+      heroTitle: 'Помогаю внедрять <em>AI и автоматизацию</em> в реальные процессы бизнеса',
+      heroCopy: 'Без магии и шума вокруг нейросетей. Разбираю, где автоматизация действительно экономит время, ускоряет команду и убирает ручную рутину, а где лучше не усложнять.',
+      heroPrimary: 'Обсудить задачу',
+      heroSecondary: 'Посмотреть форматы',
+      heroPoints: [
+        'AI-решения под реальные задачи',
+        'Воркшопы и обучение команд',
+        'Аудит процессов и пилоты',
+        'Без сложного техно-жаргона'
+      ],
+      heroFactValue: 'AI',
+      heroFactText: 'внедрение в процессы, обучение, практическая автоматизация',
+      heroNoteLabel: 'Подход',
+      heroNoteText: 'Не просто показать инструмент, а встроить его в работу так, чтобы стало быстрее, понятнее и выгоднее.',
+      problemsTitle: 'Задачи, где нужен не шум вокруг AI, а <em>понятный прикладной результат</em>',
+      problemsCopy: 'Обычно запрос звучит не как «внедрить искусственный интеллект», а как конкретная проблема: долго, неудобно, хаотично, дорого по времени или тяжело масштабируется.',
+      problems: [
+        ['⚙️', 'Слишком много ручной рутины', 'Команда тратит часы на повторяющиеся действия, которые можно упростить или убрать.'],
+        ['🧭', 'Нет ясности, что автоматизировать первым', 'Важно не распыляться, а выбрать процессы, где эффект будет понятен уже на старте.'],
+        ['🎓', 'Команда не понимает, как использовать AI', 'Нужен не общий рассказ, а практический формат на реальных задачах компании.'],
+        ['🧪', 'Хочется проверить гипотезу без большой стройки', 'Иногда сначала нужен аккуратный пилот на одном процессе, а не большое внедрение.'],
+        ['📊', 'Отчёты, аналитика и коммуникации делаются слишком долго', 'AI и автоматизация полезны там, где есть повторяемые данные, шаблоны и цикличность.'],
+        ['🤝', 'Нужен перевод с языка инструмента на язык бизнеса', 'Важно объяснить не «как работает нейросеть», а что именно это даст команде и процессу.']
+      ],
+      servicesTitle: 'Подбираю формат не под модное слово, а под <em>контекст и задачу</em>',
+      servicesCopy: 'Кому-то нужен воркшоп для команды, кому-то аудит процессов, а кому-то аккуратный пилот без лишней архитектуры.',
+      services: [
+        ['🎓', 'Воркшоп для команды', 'Практическая сессия с примерами и задачами, которые релевантны именно вашей команде.'],
+        ['🧭', 'Аудит процессов', 'Разбор, где есть ручная рутина, узкие места и процессы, которые можно улучшить быстрее всего.'],
+        ['⚙️', 'Проектирование автоматизации', 'Собираю логику сценария: шаги, роли, инструменты, ограничения и контроль качества.'],
+        ['🧪', 'Пилот на одном процессе', 'Быстрый и безопасный способ проверить пользу на практике без большого внедрения.'],
+        ['📚', 'Обучение руководителей и команд', 'Подходит тем, кому важно не только внедрить AI, но и научить людей работать с ним осмысленно.'],
+        ['🤝', 'Сопровождение внедрения', 'Несколько итераций, обратная связь и помощь в запуске первых рабочих сценариев.']
+      ],
+      processTitle: 'Путь к результату должен быть <em>простым и прозрачным</em>',
+      processCopy: 'Сначала контекст, потом подходящий формат, затем решение и только после этого внедрение или сопровождение.',
+      process: [
+        ['Шаг 1', 'Бриф и контекст', 'Разбираемся, что происходит сейчас, где рутина и где именно бизнес теряет время.'],
+        ['Шаг 2', 'Приоритет и формат', 'Выбираем, что лучше подходит: воркшоп, аудит, пилот или сопровождение.'],
+        ['Шаг 3', 'Сценарий решения', 'Собираем понятную схему: как это будет работать, кто участвует и где точки контроля.'],
+        ['Шаг 4', 'Запуск и корректировка', 'Если нужно, помогаю внедрить решение, обучить команду и поправить систему после первых недель.']
+      ],
+      trustTitle: 'Я прихожу в AI не из теории, а из <em>реальных бизнес-процессов</em>',
+      trustCopy: 'У меня сильная база в маркетинге, CRM, коммуникациях и управлении. Поэтому я смотрю на AI не как на отдельную игрушку, а как на рабочий слой, который должен приносить понятную пользу.',
+      trustSide: [
+        ['Понимаю не только инструменты, но и людей', 'Могу говорить и с руководителем, и со специалистом. Это важно, когда внедрение упирается не в нейросеть, а в роли, процессы и привычки команды.'],
+        ['Люблю прикладной результат', 'Если задача решается без сложной автоматизации, я лучше предложу простой путь, чем буду продавать лишнюю архитектуру.'],
+        ['Умею объяснять спокойно и по делу', 'Снижаю страх перед темой и перевожу технологические решения на язык пользы, времени и качества.']
+      ],
+      aboutTitle: 'Не технарь-теоретик, а человек, который умеет переводить <em>сложное в рабочее</em>',
+      about: [
+        'Более 15 лет я работаю на стыке маркетинга, CRM, коммуникаций и управленческих задач. Это даёт важную оптику: я вижу не просто инструмент, а контекст бизнеса, нагрузку на команду и стоимость ошибок.',
+        'Мне интересно направление, где AI помогает компаниям работать умнее: систематизировать знания, ускорять подготовку материалов, убирать ручные повторения и помогать команде двигаться быстрее.',
+        'Мне ближе спокойный и взрослый подход: без «волшебной кнопки», зато с понятной пользой, конкретным сценарием и здравой логикой внедрения.'
+      ],
+      aboutNote: 'Хорошая автоматизация не заменяет мышление. Она убирает рутину, чтобы у команды осталось больше сил на важное.',
+      ctaTitle: 'Можно начать с <em>короткого брифа</em>',
+      ctaCopy: 'Опиши команду, процесс и задачу. Я пойму, что вам больше подходит: воркшоп, аудит, пилот или сопровождение.',
+      ctaPoints: [
+        ['Воркшоп', 'Для команд, которым нужен быстрый и прикладной вход в тему.'],
+        ['Аудит', 'Для процессов, где уже сейчас ощущается перегруз и ручная рутина.'],
+        ['Пилот', 'Для тех, кто хочет сначала проверить гипотезу на одном сценарии.']
+      ],
+      formSubtitle: 'Оставьте короткий бриф по команде и процессу. Я предложу подходящий формат работы.',
+      formPlaceholder: 'Что у вас за команда, какой процесс хотите улучшить, где сейчас много ручной работы или потерь времени',
+      formats: [
+        ['business_workshop', 'Воркшоп для команды'],
+        ['process_audit', 'Аудит процессов'],
+        ['business_pilot', 'Пилот на одном процессе'],
+        ['support', 'Сопровождение внедрения']
+      ]
+    },
+    specialists: {
+      eyebrow: 'AI-инструменты · консультации · практическая настройка',
+      heroTitle: 'Помогаю специалистам встроить <em>AI в ежедневную работу</em>',
+      heroCopy: 'Не курс ради курса, а прикладной разбор твоих задач. Смотрим, что можно ускорить, автоматизировать и упростить уже сейчас, без лишней сложности.',
+      heroPrimary: 'Разобрать мою задачу',
+      heroSecondary: 'Посмотреть форматы',
+      heroPoints: [
+        'Личный разбор рабочего процесса',
+        'Промпты и сценарии под задачу',
+        'Мини-внедрение на встрече',
+        'Понятный вход без хаоса'
+      ],
+      heroFactValue: 'Практика',
+      heroFactText: 'разбор задач, настройка сценариев и работающие способы применения AI',
+      heroNoteLabel: 'Результат',
+      heroNoteText: 'После встречи у тебя должен остаться не только интерес к AI, а рабочий способ применять его в своих задачах.',
+      problemsTitle: 'Задачи, где AI должен помогать <em>личной работе</em>, а не просто вдохновлять',
+      problemsCopy: 'Обычно специалист приходит не за общими знаниями, а за ответом на простой вопрос: как именно использовать AI в моих ежедневных задачах, чтобы стало быстрее и легче.',
+      problems: [
+        ['🧠', 'Неясно, с чего начать', 'Инструментов много, а практического входа в тему мало. Нужен спокойный маршрут без хаоса.'],
+        ['⚡', 'Много рутинной ручной работы', 'Подготовка материалов, структурирование информации, ответы, аналитика и исследования занимают слишком много времени.'],
+        ['✍️', 'Хочется рабочие промпты, а не абстракции', 'Нужны шаблоны и сценарии, которые подходят именно под твою роль и тип задач.'],
+        ['🔎', 'Есть одна конкретная задача', 'Например: ускорить контент, отчёты, документы, аналитику, CRM-коммуникации или исследование.'],
+        ['🛠️', 'Хочется сразу что-то собрать руками', 'Не просто понять тему, а прямо на встрече собрать первый рабочий сценарий.'],
+        ['📈', 'Нужна более устойчивая перестройка работы', 'Иногда одного созвона мало, и полезнее пройти несколько итераций с обратной связью.']
+      ],
+      servicesTitle: 'Форматы для тех, кому нужен <em>личный и прикладной</em> разбор',
+      servicesCopy: 'Здесь меньше про командное внедрение и больше про твою задачу, твою роль и твой ежедневный рабочий процесс.',
+      services: [
+        ['🧠', 'Личная консультация', 'Один на один разбираем задачу и подбираем рабочий подход под твой контекст.'],
+        ['🔎', 'Разбор одного процесса', 'Смотрим конкретную рутину: контент, документы, аналитика, коммуникации, CRM или исследование.'],
+        ['⚡', 'Сборка личной системы', 'Подбираем инструменты, шаблоны и логику работы, чтобы AI стал частью твоего процесса.'],
+        ['✍️', 'Промпты и сценарии под задачу', 'Собираем конкретные рабочие шаблоны, а не общие советы из интернета.'],
+        ['🛠️', 'Мини-внедрение на встрече', 'Если задача простая, можем сразу собрать первый рабочий сценарий и проверить его в деле.'],
+        ['📈', 'Пакет из нескольких встреч', 'Для тех, кому нужно не только понять тему, но и дойти до устойчивого нового способа работы.']
+      ],
+      processTitle: 'Путь к результату должен быть <em>понятным уже после первой встречи</em>',
+      processCopy: 'Сначала задача, потом разбор, затем конкретный способ работы и только после этого масштабирование или пакет встреч.',
+      process: [
+        ['Шаг 1', 'Запрос', 'Ты описываешь свою роль, задачу и текущий затык: что хочется ускорить, автоматизировать или упростить.'],
+        ['Шаг 2', 'Разбор на встрече', 'Мы вместе смотрим на процесс, выбираем адекватные инструменты и сразу отсекаем лишнее.'],
+        ['Шаг 3', 'Сборка решения', 'Формируем конкретный рабочий способ: промпты, шаги, структура задачи, связка сервисов или мини-автоматизация.'],
+        ['Шаг 4', 'Применение в работе', 'После сессии у тебя остаётся не только понимание темы, но и реальный способ использовать AI в ежедневной практике.']
+      ],
+      trustTitle: 'Мой сильный ход здесь — не просто знание инструментов, а <em>понимание рабочих задач</em>',
+      trustCopy: 'Я не иду от идеи «давай поставим AI куда угодно». Мне важнее понять задачу специалиста, убрать лишнее и собрать решение, которое реально помогает в ежедневной работе.',
+      trustSide: [
+        ['Говорю простым языком', 'Без лишнего пафоса и технологической пыли. Так проще быстрее войти в тему и начать применять инструменты на практике.'],
+        ['Смотрю на задачу, а не на модный сервис', 'Если твоя проблема решается проще, я не буду специально усложнять решение ради эффекта.'],
+        ['Опираюсь на реальный опыт процессов', 'За счёт опыта в CRM, маркетинге и управлении могу быстрее увидеть, где AI действительно даст пользу.']
+      ],
+      aboutTitle: 'Помогаю не просто разобраться в AI, а <em>собрать свой рабочий способ</em>',
+      about: [
+        'Более 15 лет я работаю на стыке маркетинга, CRM, коммуникаций и управленческих задач. Поэтому я хорошо понимаю, как устроена рабочая рутина специалистов и где обычно съедается время.',
+        'Мне интересно направление, где AI помогает не ради вау-эффекта, а ради практики: быстрее писать, искать, собирать, анализировать, структурировать и принимать решения.',
+        'Мне нравится формат, где после разговора у человека остаётся не ощущение «тема интересная», а понятный способ встроить её в свою ежедневную работу.'
+      ],
+      aboutNote: 'Мне интереснее не продавать идею AI, а помочь человеку реально начать пользоваться им в своей задаче.',
+      ctaTitle: 'Можно начать со <em>своей задачи</em>',
+      ctaCopy: 'Опиши, что именно хочешь ускорить или автоматизировать. Я пойму, нужен ли тебе разовый разбор, мини-внедрение или несколько встреч.',
+      ctaPoints: [
+        ['Разбор задачи', 'Когда хочется быстро понять, что делать с одной конкретной рабочей проблемой.'],
+        ['Мини-внедрение', 'Когда полезно не только обсудить, но и сразу собрать первый сценарий.'],
+        ['Пакет встреч', 'Когда хочешь не просто понять тему, а реально перестроить способ работы.']
+      ],
+      formSubtitle: 'Опиши свою рабочую задачу. Я предложу формат, с которого лучше начать.',
+      formPlaceholder: 'Какая у вас роль, какую задачу хотите ускорить или автоматизировать, что сейчас делаете вручную',
+      formats: [
+        ['specialist_consult', 'Личная консультация'],
+        ['specialist_process', 'Разбор одного процесса'],
+        ['specialist_setup', 'Мини-внедрение на встрече'],
+        ['specialist_package', 'Пакет из нескольких встреч']
+      ]
+    }
+  };
+
+  let currentMode = 'business';
 
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -1401,72 +1199,110 @@
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
 
-  function setAudience(audience) {
-    currentAudience = audience;
-    document.body.setAttribute('data-audience', audience);
-
-    document.querySelectorAll('[data-audience-switch]').forEach((button) => {
-      button.classList.toggle('active', button.dataset.audienceSwitch === audience);
-    });
-
-    document.querySelectorAll('[data-audience-card]').forEach((card) => {
-      card.classList.toggle('is-inactive', card.dataset.audienceCard !== audience);
-    });
-
-    document.querySelectorAll('.scenario-panel').forEach((panel) => {
-      panel.classList.toggle('active', panel.dataset.scenario === audience);
-    });
-
-    const formSubtitle = document.getElementById('form-subtitle');
-    const messageInput = document.getElementById('f-message');
-    const formatSelect = document.getElementById('f-format');
-    const noteLabel = document.getElementById('floating-note-label');
-    const noteText = document.getElementById('floating-note-text');
-
-    if (audience === 'business') {
-      if (formSubtitle) formSubtitle.textContent = 'Оставьте короткий бриф по команде и процессу. Я предложу подходящий формат работы.';
-      if (messageInput) messageInput.placeholder = 'Что у вас за команда, какой процесс хотите улучшить, где сейчас много ручной работы или потерь времени';
-      if (formatSelect) formatSelect.value = 'business_workshop';
-      if (noteLabel) noteLabel.textContent = 'Подход';
-      if (noteText) noteText.textContent = '«Не просто показать нейросеть, а встроить её в работу так, чтобы стало быстрее, понятнее и выгоднее»';
-      activateFirstVisibleFormat();
-    } else {
-      if (formSubtitle) formSubtitle.textContent = 'Опишите личную рабочую задачу. Я предложу формат, с которого лучше начать.';
-      if (messageInput) messageInput.placeholder = 'Какая у вас роль, какую задачу хотите ускорить или автоматизировать, что сейчас делаете вручную';
-      if (formatSelect) formatSelect.value = 'specialist_consult';
-      if (noteLabel) noteLabel.textContent = 'Результат';
-      if (noteText) noteText.textContent = '«После встречи у тебя должен остаться не только интерес к AI, а рабочий способ применять его в своих задачах»';
-      activateFirstVisibleFormat();
-    }
+  function renderCards(containerId, items) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = items.map(([icon, title, text], index) => `
+      <article class="card fade-up" style="transition-delay:${index * 0.05}s">
+        <div class="card-icon">${icon}</div>
+        <h3>${title}</h3>
+        <p>${text}</p>
+      </article>
+    `).join('');
+    container.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
   }
 
-  function activateFirstVisibleFormat() {
-    document.querySelectorAll('.format-card').forEach((card) => card.classList.remove('active'));
-    const activePanel = document.querySelector('#contact .scenario-panel.active');
-    const firstCard = activePanel ? activePanel.querySelector('.format-card') : null;
-    if (firstCard) {
-      firstCard.classList.add('active');
-    }
+  function renderProcess(items) {
+    const container = document.getElementById('process-grid');
+    container.innerHTML = items.map(([step, title, text], index) => `
+      <article class="process-card fade-up" style="transition-delay:${index * 0.05}s">
+        <div class="process-step">${step}</div>
+        <div class="process-title">${title}</div>
+        <p>${text}</p>
+      </article>
+    `).join('');
+    container.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
   }
 
-  function selectFormat(el, format) {
-    const panel = el.closest('.scenario-panel');
-    if (panel) {
-      panel.querySelectorAll('.format-card').forEach((card) => card.classList.remove('active'));
-    }
-    el.classList.add('active');
+  function renderCtaPoints(items) {
+    const container = document.getElementById('cta-points');
+    container.innerHTML = items.map(([title, text]) => `
+      <div class="cta-point">
+        <div class="cta-point-title">${title}</div>
+        <div class="cta-point-text">${text}</div>
+      </div>
+    `).join('');
+  }
+
+  function renderFormats(formats) {
     const select = document.getElementById('f-format');
-    if (select) {
-      select.value = format;
-    }
+    select.innerHTML = formats.map(([value, label]) => `<option value="${value}">${label}</option>`).join('');
   }
+
+  function renderMode(mode) {
+    currentMode = mode;
+    document.body.setAttribute('data-mode', mode);
+
+    document.querySelectorAll('[data-mode-btn]').forEach((btn) => {
+      btn.classList.toggle('active', btn.dataset.modeBtn === mode);
+    });
+
+    const data = content[mode];
+
+    document.getElementById('hero-eyebrow-text').textContent = data.eyebrow;
+    document.getElementById('hero-title').innerHTML = data.heroTitle;
+    document.getElementById('hero-copy').textContent = data.heroCopy;
+    document.getElementById('hero-primary').textContent = data.heroPrimary;
+    document.getElementById('hero-secondary').textContent = data.heroSecondary;
+    document.getElementById('hero-fact-value').textContent = data.heroFactValue;
+    document.getElementById('hero-fact-text').textContent = data.heroFactText;
+    document.getElementById('hero-note-label').textContent = data.heroNoteLabel;
+    document.getElementById('hero-note-text').textContent = data.heroNoteText;
+    document.getElementById('hero-points').innerHTML = data.heroPoints.map((point) => `<div class="hero-point">${point}</div>`).join('');
+
+    document.getElementById('problems-title').innerHTML = data.problemsTitle;
+    document.getElementById('problems-copy').textContent = data.problemsCopy;
+    renderCards('problem-grid', data.problems);
+
+    document.getElementById('services-title').innerHTML = data.servicesTitle;
+    document.getElementById('services-copy').textContent = data.servicesCopy;
+    renderCards('service-grid', data.services);
+
+    document.getElementById('process-title').innerHTML = data.processTitle;
+    document.getElementById('process-copy').textContent = data.processCopy;
+    renderProcess(data.process);
+
+    document.getElementById('trust-title').innerHTML = data.trustTitle;
+    document.getElementById('trust-copy').textContent = data.trustCopy;
+    document.getElementById('trust-side-title-1').textContent = data.trustSide[0][0];
+    document.getElementById('trust-side-copy-1').textContent = data.trustSide[0][1];
+    document.getElementById('trust-side-title-2').textContent = data.trustSide[1][0];
+    document.getElementById('trust-side-copy-2').textContent = data.trustSide[1][1];
+    document.getElementById('trust-side-title-3').textContent = data.trustSide[2][0];
+    document.getElementById('trust-side-copy-3').textContent = data.trustSide[2][1];
+
+    document.getElementById('about-title').innerHTML = data.aboutTitle;
+    document.getElementById('about-copy-1').textContent = data.about[0];
+    document.getElementById('about-copy-2').textContent = data.about[1];
+    document.getElementById('about-copy-3').textContent = data.about[2];
+    document.getElementById('about-note').textContent = data.aboutNote;
+
+    document.getElementById('cta-title').innerHTML = data.ctaTitle;
+    document.getElementById('cta-copy').textContent = data.ctaCopy;
+    renderCtaPoints(data.ctaPoints);
+
+    document.getElementById('form-subtitle').textContent = data.formSubtitle;
+    document.getElementById('f-message').placeholder = data.formPlaceholder;
+    renderFormats(data.formats);
+  }
+
+  document.querySelectorAll('[data-mode-btn]').forEach((btn) => {
+    btn.addEventListener('click', () => renderMode(btn.dataset.modeBtn));
+  });
 
   async function submitForm() {
     const nameInput = document.getElementById('f-name');
@@ -1479,13 +1315,13 @@
     const contact = contactInput.value.trim();
 
     if (!name || !contact) {
-      nameInput.style.borderColor = name ? 'rgba(23,24,23,0.12)' : '#d24f4e';
-      contactInput.style.borderColor = contact ? 'rgba(23,24,23,0.12)' : '#d24f4e';
+      nameInput.style.borderColor = name ? 'rgba(22,22,22,0.12)' : '#d24f4e';
+      contactInput.style.borderColor = contact ? 'rgba(22,22,22,0.12)' : '#d24f4e';
       return;
     }
 
-    nameInput.style.borderColor = 'rgba(23,24,23,0.12)';
-    contactInput.style.borderColor = 'rgba(23,24,23,0.12)';
+    nameInput.style.borderColor = 'rgba(22,22,22,0.12)';
+    contactInput.style.borderColor = 'rgba(22,22,22,0.12)';
 
     const originalText = submitBtn.textContent;
     submitBtn.disabled = true;
@@ -1499,7 +1335,7 @@
       message: messageInput.value.trim(),
       page: window.location.href,
       source: 'github-pages-ai-draft',
-      audience: currentAudience,
+      audience: currentMode,
       userAgent: navigator.userAgent
     });
 
@@ -1507,9 +1343,7 @@
       const response = await fetch(`${FORM_ENDPOINT}?${params.toString()}`, {
         method: 'GET'
       });
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       document.getElementById('booking-form-wrap').style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
     } catch (error) {
@@ -1520,7 +1354,7 @@
     }
   }
 
-  setAudience('business');
+  renderMode('business');
 </script>
 </body>
 </html>
