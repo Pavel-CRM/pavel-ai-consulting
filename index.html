@@ -812,7 +812,7 @@
     <a href="#problems">Задачи</a>
     <a href="#services">Форматы</a>
     <a href="#process">Процесс</a>
-    <a href="#proof">Доверие</a>
+    <a href="#proof" id="proof-link">Доверие</a>
     <a href="#contact" class="nav-cta">Оставить запрос</a>
   </div>
   <a href="#contact" class="nav-mobile-cta">Запрос</a>
@@ -1254,6 +1254,7 @@
     currentMode = mode;
     document.body.setAttribute('data-mode', mode);
     const compactSectionHead = mode === 'business';
+    const showProofSection = mode !== 'business';
 
     document.querySelectorAll('[data-mode-btn]').forEach((btn) => {
       btn.classList.toggle('active', btn.dataset.modeBtn === mode);
@@ -1265,6 +1266,9 @@
     document.querySelectorAll('.section-head .section-copy').forEach((el) => {
       el.hidden = compactSectionHead;
     });
+
+    document.getElementById('proof').hidden = !showProofSection;
+    document.getElementById('proof-link').hidden = !showProofSection;
 
     const data = content[mode];
 
