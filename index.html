@@ -311,6 +311,32 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
   }
+  .audience-switch {
+    display: inline-flex;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.72);
+    border: 1px solid rgba(23,24,23,0.08);
+    box-shadow: var(--shadow);
+    margin-bottom: 22px;
+  }
+  .switch-btn {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    padding: 12px 18px;
+    border-radius: 999px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .switch-btn.active {
+    background: var(--night);
+    color: #f7f5ef;
+  }
   .audience-card {
     background: var(--card);
     border: 1px solid rgba(23,24,23,0.08);
@@ -382,6 +408,18 @@
   }
   .business .audience-icon { background: rgba(15,118,110,0.12); color: var(--teal); }
   .specialists .audience-icon { background: rgba(184,106,31,0.14); color: var(--amber); }
+
+  .audience-card.is-inactive {
+    opacity: 0.52;
+    transform: scale(0.985);
+  }
+
+  .scenario-panel {
+    display: none;
+  }
+  .scenario-panel.active {
+    display: block;
+  }
 
   .offers-grid {
     display: grid;
@@ -778,15 +816,27 @@
     }
     .hero { min-height: auto; padding-top: 112px; }
     .hero-aside { order: -1; }
+    .hero-card-grid { grid-template-columns: 1fr; }
     .floating-note {
-      left: 18px;
-      bottom: 18px;
-      width: calc(100% - 36px);
+      position: static;
+      width: 100%;
+      margin-top: 14px;
+      left: auto;
+      bottom: auto;
     }
     .audience-grid,
     .offers-grid,
     .process-grid {
       grid-template-columns: 1fr;
+    }
+    .audience-switch {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .switch-btn {
+      width: 100%;
+      padding: 12px 10px;
     }
     .section-head {
       flex-direction: column;
@@ -866,15 +916,20 @@
   <div class="section-head fade-up">
     <div>
       <div class="section-kicker">Два направления</div>
-      <h2 class="section-title">Сайт сразу делит запросы на <em>бизнес</em> и <em>специалистов</em></h2>
+      <h2 class="section-title">Сайт теперь явно делит путь на <em>бизнес</em> и <em>специалистов</em></h2>
     </div>
     <p class="section-copy">
       Это снимает путаницу: компаниям нужен внедренческий результат и обучение команды, а специалистам обычно важны личная консультация, разбор задачи и помощь руками.
     </p>
   </div>
 
+  <div class="audience-switch fade-up" aria-label="Выбор сценария">
+    <button class="switch-btn active" type="button" data-audience-switch="business" onclick="setAudience('business')">Для бизнеса</button>
+    <button class="switch-btn" type="button" data-audience-switch="specialists" onclick="setAudience('specialists')">Для специалистов</button>
+  </div>
+
   <div class="audience-grid">
-    <article class="audience-card business fade-up">
+    <article class="audience-card business fade-up" data-audience-card="business">
       <div class="audience-tag">Для бизнеса</div>
       <h3>Когда команде нужен не хайп, а рабочая система</h3>
       <p>Подходит компаниям, которые хотят понять, где AI реально помогает в операционке, маркетинге, клиентском сервисе или внутренних процессах.</p>
@@ -894,7 +949,7 @@
       </div>
     </article>
 
-    <article class="audience-card specialists fade-up" style="transition-delay:0.08s">
+    <article class="audience-card specialists fade-up is-inactive" style="transition-delay:0.08s" data-audience-card="specialists">
       <div class="audience-tag">Для специалистов</div>
       <h3>Когда хочется самому начать использовать AI сильнее</h3>
       <p>Для маркетологов, менеджеров, продактов, фаундеров и специалистов, которые хотят перестать делать всё вручную и собрать свою рабочую систему.</p>
@@ -920,44 +975,81 @@
   <div class="section-head fade-up">
     <div>
       <div class="section-kicker">Что можно заказать</div>
-      <h2 class="section-title">Первый набор услуг для <em>черновика сайта</em></h2>
+      <h2 class="section-title">У каждого сценария свои <em>блоки и услуги</em></h2>
     </div>
     <p class="section-copy">
-      Я специально оставила формулировки практичными, без избыточных обещаний. Это выглядит взрослее и лучше продаёт экспертность.
+      После переключения меняются сами офферы и следующий шаг. Так сайт ведёт человека по более точному маршруту, а не показывает всем одно и то же.
     </p>
   </div>
 
-  <div class="offers-grid">
-    <article class="offer-card fade-up">
-      <div class="offer-icon">🧭</div>
-      <h3>AI-аудит процессов</h3>
-      <p>Короткий диагностический разбор: где в компании теряется время, что можно автоматизировать уже сейчас и что точно не стоит трогать.</p>
-    </article>
-    <article class="offer-card fade-up" style="transition-delay:0.05s">
-      <div class="offer-icon">🎓</div>
-      <h3>Воркшоп для команды</h3>
-      <p>Живая сессия для отдела или кросс-функциональной команды: сценарии применения AI, упражнения и разбор ваших кейсов.</p>
-    </article>
-    <article class="offer-card fade-up" style="transition-delay:0.1s">
-      <div class="offer-icon">⚙️</div>
-      <h3>Проектирование автоматизации</h3>
-      <p>Собираю логику процесса: входящие данные, шаги, роли, промпты, точки контроля и инструменты, которые лучше всего подойдут.</p>
-    </article>
-    <article class="offer-card fade-up">
-      <div class="offer-icon">🧪</div>
-      <h3>Пилот под конкретную задачу</h3>
-      <p>Быстрый тест на одном процессе: контент, клиентские ответы, аналитика, внутренние регламенты, маркетинговые рутины.</p>
-    </article>
-    <article class="offer-card fade-up" style="transition-delay:0.05s">
-      <div class="offer-icon">🧠</div>
-      <h3>Личная консультация специалиста</h3>
-      <p>Один на один разбираем задачу и собираем способ работать быстрее: от выбора инструментов до практики применения в ежедневной работе.</p>
-    </article>
-    <article class="offer-card fade-up" style="transition-delay:0.1s">
-      <div class="offer-icon">🤝</div>
-      <h3>Сопровождение внедрения</h3>
-      <p>Подходит тем, кому нужен не разовый совет, а несколько итераций, обратная связь и помощь при запуске первых сценариев.</p>
-    </article>
+  <div class="scenario-panel active" data-scenario="business">
+    <div class="offers-grid">
+      <article class="offer-card fade-up">
+        <div class="offer-icon">🧭</div>
+        <h3>AI-аудит процессов</h3>
+        <p>Короткий диагностический разбор: где в компании теряется время, что можно автоматизировать уже сейчас и что точно не стоит трогать.</p>
+      </article>
+      <article class="offer-card fade-up" style="transition-delay:0.05s">
+        <div class="offer-icon">🎓</div>
+        <h3>Воркшоп для команды</h3>
+        <p>Живая сессия для отдела или кросс-функциональной команды: сценарии применения AI, упражнения и разбор ваших кейсов.</p>
+      </article>
+      <article class="offer-card fade-up" style="transition-delay:0.1s">
+        <div class="offer-icon">⚙️</div>
+        <h3>Проектирование автоматизации</h3>
+        <p>Собираю логику процесса: входящие данные, шаги, роли, промпты, точки контроля и инструменты, которые лучше всего подойдут.</p>
+      </article>
+      <article class="offer-card fade-up">
+        <div class="offer-icon">🧪</div>
+        <h3>Пилот под конкретную задачу</h3>
+        <p>Быстрый тест на одном процессе: контент, клиентские ответы, аналитика, внутренние регламенты, маркетинговые рутины.</p>
+      </article>
+      <article class="offer-card fade-up" style="transition-delay:0.05s">
+        <div class="offer-icon">📚</div>
+        <h3>Обучение руководителей и команд</h3>
+        <p>Отдельный формат для тех, кому важно не только внедрить инструмент, но и научить людей пользоваться им осмысленно.</p>
+      </article>
+      <article class="offer-card fade-up" style="transition-delay:0.1s">
+        <div class="offer-icon">🤝</div>
+        <h3>Сопровождение внедрения</h3>
+        <p>Подходит тем, кому нужен не разовый совет, а несколько итераций, обратная связь и помощь при запуске первых сценариев.</p>
+      </article>
+    </div>
+  </div>
+
+  <div class="scenario-panel" data-scenario="specialists">
+    <div class="offers-grid">
+      <article class="offer-card fade-up">
+        <div class="offer-icon">🧠</div>
+        <h3>Личная консультация</h3>
+        <p>Один на один разбираем задачу и собираем способ работать быстрее: от выбора инструментов до практики применения в ежедневной работе.</p>
+      </article>
+      <article class="offer-card fade-up" style="transition-delay:0.05s">
+        <div class="offer-icon">🔎</div>
+        <h3>Разбор рабочего процесса</h3>
+        <p>Смотрим конкретную рутину: контент, исследования, документы, аналитика, коммуникации, CRM или продажи.</p>
+      </article>
+      <article class="offer-card fade-up" style="transition-delay:0.1s">
+        <div class="offer-icon">⚡</div>
+        <h3>Сборка личной системы</h3>
+        <p>Подбираем инструменты, шаблоны и логику работы, чтобы AI стал частью твоего ежедневного процесса, а не редким экспериментом.</p>
+      </article>
+      <article class="offer-card fade-up">
+        <div class="offer-icon">✍️</div>
+        <h3>Промпты и сценарии под задачу</h3>
+        <p>Собираем конкретные рабочие шаблоны: не абстрактные «подсказки для ChatGPT», а прикладные штуки под твою роль.</p>
+      </article>
+      <article class="offer-card fade-up" style="transition-delay:0.05s">
+        <div class="offer-icon">🛠️</div>
+        <h3>Мини-внедрение на встрече</h3>
+        <p>Если задача простая, можем сразу на сессии собрать первый рабочий сценарий и проверить, как он ведёт себя в деле.</p>
+      </article>
+      <article class="offer-card fade-up" style="transition-delay:0.1s">
+        <div class="offer-icon">📈</div>
+        <h3>Пакет из нескольких встреч</h3>
+        <p>Для тех, кому нужно не только понять тему, но и дойти до устойчивого нового способа работы через несколько итераций.</p>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -965,31 +1057,58 @@
   <div class="section-head fade-up">
     <div>
       <div class="section-kicker">Как проходит работа</div>
-      <h2 class="section-title">Простой маршрут: от запроса к <em>внятному решению</em></h2>
+      <h2 class="section-title">И шаги к услуге тоже <em>разные</em></h2>
     </div>
   </div>
 
-  <div class="process-grid">
-    <article class="process-card fade-up">
-      <div class="process-step">Шаг 1</div>
-      <div class="process-title">Контекст</div>
-      <p>Сначала разбираемся, что у вас происходит сейчас, кто участники процесса, где рутина и где реальная боль.</p>
-    </article>
-    <article class="process-card fade-up" style="transition-delay:0.05s">
-      <div class="process-step">Шаг 2</div>
-      <div class="process-title">Приоритет</div>
-      <p>Выбираем один или несколько процессов, где автоматизация даст понятный эффект, а не просто красивую демонстрацию.</p>
-    </article>
-    <article class="process-card fade-up" style="transition-delay:0.1s">
-      <div class="process-step">Шаг 3</div>
-      <div class="process-title">Сценарий</div>
-      <p>Собираем логику внедрения: инструменты, шаги, роли, форматы работы, ограничения и контроль качества результата.</p>
-    </article>
-    <article class="process-card fade-up" style="transition-delay:0.15s">
-      <div class="process-step">Шаг 4</div>
-      <div class="process-title">Запуск</div>
-      <p>Если нужно, помогаю запустить пилот, обучить команду или скорректировать систему после первых недель использования.</p>
-    </article>
+  <div class="scenario-panel active" data-scenario="business">
+    <div class="process-grid">
+      <article class="process-card fade-up">
+        <div class="process-step">Шаг 1</div>
+        <div class="process-title">Созвон и контекст</div>
+        <p>Сначала разбираемся, что у вас происходит сейчас, кто участники процесса, где рутина и где реальная боль.</p>
+      </article>
+      <article class="process-card fade-up" style="transition-delay:0.05s">
+        <div class="process-step">Шаг 2</div>
+        <div class="process-title">Приоритет и формат</div>
+        <p>Выбираем: воркшоп, аудит, пилот или сопровождение. Смотрим, что даст понятный эффект быстрее всего.</p>
+      </article>
+      <article class="process-card fade-up" style="transition-delay:0.1s">
+        <div class="process-step">Шаг 3</div>
+        <div class="process-title">Сценарий внедрения</div>
+        <p>Собираем логику внедрения: инструменты, шаги, роли, ограничения, обучение и контроль качества результата.</p>
+      </article>
+      <article class="process-card fade-up" style="transition-delay:0.15s">
+        <div class="process-step">Шаг 4</div>
+        <div class="process-title">Запуск и корректировка</div>
+        <p>Если нужно, помогаю запустить пилот, обучить команду или скорректировать систему после первых недель использования.</p>
+      </article>
+    </div>
+  </div>
+
+  <div class="scenario-panel" data-scenario="specialists">
+    <div class="process-grid">
+      <article class="process-card fade-up">
+        <div class="process-step">Шаг 1</div>
+        <div class="process-title">Запрос</div>
+        <p>Ты описываешь свою роль, задачу и текущий затык: что хочется ускорить, автоматизировать или упростить.</p>
+      </article>
+      <article class="process-card fade-up" style="transition-delay:0.05s">
+        <div class="process-step">Шаг 2</div>
+        <div class="process-title">Разбор на встрече</div>
+        <p>Мы вместе смотрим на процесс, выбираем адекватные инструменты и сразу отсекаем лишнее.</p>
+      </article>
+      <article class="process-card fade-up" style="transition-delay:0.1s">
+        <div class="process-step">Шаг 3</div>
+        <div class="process-title">Сборка сценария</div>
+        <p>Формируем конкретный рабочий способ: промпты, шаги, структура задачи, автоматизация или связка сервисов.</p>
+      </article>
+      <article class="process-card fade-up" style="transition-delay:0.15s">
+        <div class="process-step">Шаг 4</div>
+        <div class="process-title">Применение в работе</div>
+        <p>После сессии у тебя остаётся не только понимание темы, но и реальный способ использовать AI в ежедневной практике.</p>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -1076,45 +1195,93 @@
   <div class="cta-wrap fade-up">
     <div class="cta-panel">
       <div class="section-kicker">Старт</div>
-      <h2 class="cta-title">Можно начать с <em>короткого запроса</em></h2>
-      <p class="cta-text">
-        Опиши задачу в двух-трёх предложениях. Я пойму, что тебе больше подходит: воркшоп, аудит процесса, личная консультация или сопровождение.
-      </p>
+      <div class="scenario-panel active" data-scenario="business">
+        <h2 class="cta-title">Для бизнеса: можно начать с <em>короткого брифа</em></h2>
+        <p class="cta-text">
+          Опиши команду, процесс и задачу. Я пойму, что вам больше подходит: воркшоп, аудит, пилот или сопровождение внедрения.
+        </p>
 
-      <div class="format-stack">
-        <div class="format-card active" onclick="selectFormat(this, 'business_workshop')">
-          <div class="format-head">
-            <div class="format-emoji">🏢</div>
-            <div>
-              <div class="format-title">Воркшоп для бизнеса</div>
-              <div class="format-meta">Команда · обучение · практика на ваших кейсах</div>
+        <div class="format-stack">
+          <div class="format-card active" onclick="selectFormat(this, 'business_workshop')">
+            <div class="format-head">
+              <div class="format-emoji">🏢</div>
+              <div>
+                <div class="format-title">Воркшоп для бизнеса</div>
+                <div class="format-meta">Команда · обучение · практика на ваших кейсах</div>
+              </div>
+            </div>
+          </div>
+          <div class="format-card" onclick="selectFormat(this, 'process_audit')">
+            <div class="format-head">
+              <div class="format-emoji">🧭</div>
+              <div>
+                <div class="format-title">Аудит и карта автоматизации</div>
+                <div class="format-meta">Разбор процессов · точки роста · приоритеты</div>
+              </div>
+            </div>
+          </div>
+          <div class="format-card" onclick="selectFormat(this, 'business_pilot')">
+            <div class="format-head">
+              <div class="format-emoji">🧪</div>
+              <div>
+                <div class="format-title">Пилот на одном процессе</div>
+                <div class="format-meta">Быстрый тест · гипотеза · проверка эффекта</div>
+              </div>
+            </div>
+          </div>
+          <div class="format-card" onclick="selectFormat(this, 'support')">
+            <div class="format-head">
+              <div class="format-emoji">🤝</div>
+              <div>
+                <div class="format-title">Сопровождение внедрения</div>
+                <div class="format-meta">Несколько итераций · помощь в запуске · обратная связь</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="format-card" onclick="selectFormat(this, 'process_audit')">
-          <div class="format-head">
-            <div class="format-emoji">🧭</div>
-            <div>
-              <div class="format-title">Аудит и карта автоматизации</div>
-              <div class="format-meta">Разбор процессов · точки роста · приоритеты</div>
+      </div>
+
+      <div class="scenario-panel" data-scenario="specialists">
+        <h2 class="cta-title">Для специалистов: можно начать с <em>своей задачи</em></h2>
+        <p class="cta-text">
+          Опиши, что именно хочешь ускорить или автоматизировать. Я пойму, нужен ли тебе разовый разбор, мини-внедрение или несколько встреч.
+        </p>
+
+        <div class="format-stack">
+          <div class="format-card active" onclick="selectFormat(this, 'specialist_consult')">
+            <div class="format-head">
+              <div class="format-emoji">🧠</div>
+              <div>
+                <div class="format-title">Консультация для специалиста</div>
+                <div class="format-meta">Личный разбор задачи · инструменты · практический сценарий</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="format-card" onclick="selectFormat(this, 'specialist_consult')">
-          <div class="format-head">
-            <div class="format-emoji">🧠</div>
-            <div>
-              <div class="format-title">Консультация для специалиста</div>
-              <div class="format-meta">Личный разбор задачи · инструменты · практический сценарий</div>
+          <div class="format-card" onclick="selectFormat(this, 'specialist_process')">
+            <div class="format-head">
+              <div class="format-emoji">🔎</div>
+              <div>
+                <div class="format-title">Разбор одного процесса</div>
+                <div class="format-meta">Контент · аналитика · документы · коммуникации</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="format-card" onclick="selectFormat(this, 'support')">
-          <div class="format-head">
-            <div class="format-emoji">🤝</div>
-            <div>
-              <div class="format-title">Сопровождение внедрения</div>
-              <div class="format-meta">Несколько итераций · помощь в запуске · обратная связь</div>
+          <div class="format-card" onclick="selectFormat(this, 'specialist_setup')">
+            <div class="format-head">
+              <div class="format-emoji">🛠️</div>
+              <div>
+                <div class="format-title">Мини-внедрение на встрече</div>
+                <div class="format-meta">Сразу собираем первый рабочий сценарий</div>
+              </div>
+            </div>
+          </div>
+          <div class="format-card" onclick="selectFormat(this, 'specialist_package')">
+            <div class="format-head">
+              <div class="format-emoji">📈</div>
+              <div>
+                <div class="format-title">Пакет из нескольких встреч</div>
+                <div class="format-meta">Для более устойчивой перестройки способа работы</div>
+              </div>
             </div>
           </div>
         </div>
@@ -1124,7 +1291,7 @@
     <div class="form-panel">
       <div id="booking-form-wrap">
         <h3 class="form-title">Оставить запрос</h3>
-        <p class="form-subtitle">Отвечу, какой формат подойдёт лучше всего, и предложу следующий шаг</p>
+        <p class="form-subtitle" id="form-subtitle">Отвечу, какой формат подойдёт лучше всего, и предложу следующий шаг</p>
 
         <div class="form-row">
           <div class="form-group">
@@ -1186,6 +1353,7 @@
 
 <script>
   const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwUaVSd9Dq5WsHidld6lvTubfXCOUBDBsXDgKPNcyr5xFRJsy8uVuy0_rNX9cKvArv0/exec';
+  let currentAudience = 'business';
 
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -1201,8 +1369,52 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
 
-  function selectFormat(el, format) {
+  function setAudience(audience) {
+    currentAudience = audience;
+
+    document.querySelectorAll('[data-audience-switch]').forEach((button) => {
+      button.classList.toggle('active', button.dataset.audienceSwitch === audience);
+    });
+
+    document.querySelectorAll('[data-audience-card]').forEach((card) => {
+      card.classList.toggle('is-inactive', card.dataset.audienceCard !== audience);
+    });
+
+    document.querySelectorAll('.scenario-panel').forEach((panel) => {
+      panel.classList.toggle('active', panel.dataset.scenario === audience);
+    });
+
+    const formSubtitle = document.getElementById('form-subtitle');
+    const messageInput = document.getElementById('f-message');
+    const formatSelect = document.getElementById('f-format');
+
+    if (audience === 'business') {
+      if (formSubtitle) formSubtitle.textContent = 'Оставьте короткий бриф по команде и процессу. Я предложу подходящий формат работы.';
+      if (messageInput) messageInput.placeholder = 'Что у вас за команда, какой процесс хотите улучшить, где сейчас много ручной работы или потерь времени';
+      if (formatSelect) formatSelect.value = 'business_workshop';
+      activateFirstVisibleFormat();
+    } else {
+      if (formSubtitle) formSubtitle.textContent = 'Опишите личную рабочую задачу. Я предложу формат, с которого лучше начать.';
+      if (messageInput) messageInput.placeholder = 'Какая у вас роль, какую задачу хотите ускорить или автоматизировать, что сейчас делаете вручную';
+      if (formatSelect) formatSelect.value = 'specialist_consult';
+      activateFirstVisibleFormat();
+    }
+  }
+
+  function activateFirstVisibleFormat() {
     document.querySelectorAll('.format-card').forEach((card) => card.classList.remove('active'));
+    const activePanel = document.querySelector('#contact .scenario-panel.active');
+    const firstCard = activePanel ? activePanel.querySelector('.format-card') : null;
+    if (firstCard) {
+      firstCard.classList.add('active');
+    }
+  }
+
+  function selectFormat(el, format) {
+    const panel = el.closest('.scenario-panel');
+    if (panel) {
+      panel.querySelectorAll('.format-card').forEach((card) => card.classList.remove('active'));
+    }
     el.classList.add('active');
     const select = document.getElementById('f-format');
     if (select) {
@@ -1241,6 +1453,7 @@
       message: messageInput.value.trim(),
       page: window.location.href,
       source: 'github-pages-ai-draft',
+      audience: currentAudience,
       userAgent: navigator.userAgent
     });
 
@@ -1260,6 +1473,8 @@
       alert('Не удалось отправить заявку. Напишите мне в Telegram: @utochkirosta');
     }
   }
+
+  setAudience('business');
 </script>
 </body>
 </html>
