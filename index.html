@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Павел Васильев — AI-автоматизация и консалтинг для бизнеса</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f7f5ef;
+    --card: rgba(255, 255, 255, 0.82);
+    --card-solid: #ffffff;
+    --ink: #171817;
+    --muted: rgba(23, 24, 23, 0.64);
+    --muted-soft: rgba(23, 24, 23, 0.38);
+    --line: rgba(23, 24, 23, 0.1);
+    --teal: #0f766e;
+    --teal-soft: #e4f5f1;
+    --amber: #b86a1f;
+    --amber-soft: #fcf0e2;
+    --night: #15211d;
+    --night-soft: #22322d;
+    --radius: 18px;
+    --radius-lg: 28px;
+    --shadow: 0 20px 60px rgba(21, 33, 29, 0.08);
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "DM Sans", system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background:
+      radial-gradient(circle at top left, rgba(15,118,110,0.10), transparent 32%),
+      radial-gradient(circle at top right, rgba(184,106,31,0.10), transparent 28%),
+      linear-gradient(180deg, #fbfaf7 0%, var(--paper) 46%, #f3f1eb 100%);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    height: 70px;
+    background: rgba(247,245,239,0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  nav.scrolled {
+    border-color: var(--line);
+    box-shadow: 0 8px 30px rgba(21, 33, 29, 0.06);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 19px;
+    text-decoration: none;
+    letter-spacing: -0.03em;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 14px;
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta,
+  .nav-mobile-cta,
+  .btn-primary,
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 500;
+    transition: transform 0.18s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .nav-cta,
+  .btn-primary {
+    background: var(--night);
+    color: #f7f5ef;
+  }
+  .nav-cta:hover,
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    background: var(--teal);
+  }
+  .nav-cta {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+  .nav-mobile-cta {
+    display: none;
+    padding: 10px 16px;
+    font-size: 13px;
+    background: var(--night);
+    color: #f7f5ef;
+  }
+  .nav-mobile-cta:hover { background: var(--teal); transform: translateY(-1px); }
+
+  section {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 96px 32px;
+  }
+
+  .hero {
+    min-height: 100vh;
+    padding-top: 128px;
+    padding-bottom: 72px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 460px);
+    gap: 56px;
+    align-items: center;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: var(--teal-soft);
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 26px;
+  }
+  .eyebrow span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .hero h1,
+  .section-title,
+  .cta-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 1.04;
+  }
+  .hero h1 {
+    font-size: clamp(44px, 6vw, 78px);
+    max-width: 720px;
+    margin-bottom: 24px;
+  }
+  .hero h1 em,
+  .section-title em,
+  .cta-title em {
+    font-style: italic;
+    color: var(--teal);
+  }
+  .hero-text {
+    font-size: 19px;
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 34px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .btn-primary,
+  .btn-secondary {
+    padding: 15px 26px;
+    font-size: 15px;
+  }
+  .btn-secondary {
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.46);
+    color: var(--ink);
+  }
+  .btn-secondary:hover {
+    transform: translateY(-1px);
+    border-color: rgba(23,24,23,0.22);
+    background: rgba(255,255,255,0.8);
+  }
+  .hero-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .hero-point {
+    padding: 11px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.48);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .hero-aside {
+    position: relative;
+  }
+  .hero-panel {
+    background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.76) 100%);
+    border: 1px solid rgba(23,24,23,0.08);
+    border-radius: 34px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .hero-photo {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: linear-gradient(135deg, #d6d2ca 0%, #eee9de 100%);
+  }
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+  }
+  .hero-card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(23,24,23,0.08);
+  }
+  .hero-mini-card {
+    background: rgba(255,255,255,0.78);
+    padding: 20px;
+  }
+  .hero-mini-label {
+    font-size: 12px;
+    color: var(--muted-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .hero-mini-value {
+    font-family: var(--serif);
+    font-size: 34px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .hero-mini-text {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .floating-note {
+    position: absolute;
+    bottom: 26px;
+    left: -22px;
+    width: min(250px, 72%);
+    padding: 18px 18px 16px;
+    background: var(--night);
+    color: #f7f5ef;
+    border-radius: 22px;
+    box-shadow: 0 18px 50px rgba(21, 33, 29, 0.22);
+  }
+  .floating-note-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(247,245,239,0.56);
+    margin-bottom: 8px;
+  }
+  .floating-note-text {
+    font-size: 14px;
+    line-height: 1.45;
+    font-family: var(--serif);
+  }
+
+  .section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 34px;
+  }
+  .section-kicker {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-soft);
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-size: clamp(34px, 4vw, 58px);
+    max-width: 760px;
+  }
+  .section-copy {
+    max-width: 340px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .audience-card {
+    background: var(--card);
+    border: 1px solid rgba(23,24,23,0.08);
+    border-radius: 28px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+  }
+  .audience-card.business {
+    background:
+      linear-gradient(180deg, rgba(228,245,241,0.82) 0%, rgba(255,255,255,0.9) 100%);
+  }
+  .audience-card.specialists {
+    background:
+      linear-gradient(180deg, rgba(252,240,226,0.86) 0%, rgba(255,255,255,0.92) 100%);
+  }
+  .audience-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 18px;
+  }
+  .audience-card.business .audience-tag { color: var(--teal); }
+  .audience-card.specialists .audience-tag { color: var(--amber); }
+  .audience-card h3 {
+    font-family: var(--serif);
+    font-size: 34px;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+  .audience-card p {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .audience-list {
+    display: grid;
+    gap: 12px;
+  }
+  .audience-item {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 12px;
+    align-items: start;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .audience-item strong {
+    display: block;
+    margin-bottom: 2px;
+    font-weight: 500;
+  }
+  .audience-item span {
+    color: var(--muted);
+  }
+  .audience-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-top: 1px;
+  }
+  .business .audience-icon { background: rgba(15,118,110,0.12); color: var(--teal); }
+  .specialists .audience-icon { background: rgba(184,106,31,0.14); color: var(--amber); }
+
+  .offers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .offer-card,
+  .process-card,
+  .proof-card,
+  .format-card {
+    background: rgba(255,255,255,0.72);
+    border: 1px solid rgba(23,24,23,0.08);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+  }
+  .offer-card {
+    padding: 26px;
+  }
+  .offer-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    background: var(--teal-soft);
+    margin-bottom: 18px;
+  }
+  .offer-card:nth-child(2) .offer-icon,
+  .offer-card:nth-child(5) .offer-icon { background: var(--amber-soft); }
+  .offer-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .offer-card p {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .process-card {
+    padding: 24px;
+  }
+  .process-step {
+    font-size: 12px;
+    color: var(--muted-soft);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .process-title {
+    font-family: var(--serif);
+    font-size: 24px;
+    line-height: 1.05;
+    margin-bottom: 10px;
+  }
+  .process-card p {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .proof-wrap {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 18px;
+  }
+  .proof-lead {
+    background: linear-gradient(135deg, rgba(21,33,29,0.96), rgba(34,50,45,0.94));
+    color: #f7f5ef;
+    border-radius: 30px;
+    padding: 34px;
+    box-shadow: 0 24px 70px rgba(21, 33, 29, 0.16);
+  }
+  .proof-lead .section-kicker { color: rgba(247,245,239,0.46); }
+  .proof-lead h3 {
+    font-family: var(--serif);
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 18px;
+  }
+  .proof-lead p {
+    color: rgba(247,245,239,0.72);
+    font-size: 15px;
+    max-width: 520px;
+    margin-bottom: 28px;
+  }
+  .proof-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(247,245,239,0.14);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .proof-stat {
+    padding: 18px 16px;
+    background: rgba(247,245,239,0.06);
+  }
+  .proof-value {
+    font-family: var(--serif);
+    font-size: 30px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .proof-label {
+    font-size: 12px;
+    color: rgba(247,245,239,0.62);
+  }
+  .proof-grid {
+    display: grid;
+    gap: 14px;
+  }
+  .proof-card {
+    padding: 24px;
+  }
+  .proof-card h4 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .proof-card p {
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(320px, 440px);
+    gap: 52px;
+    align-items: center;
+  }
+  .about-copy p {
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .about-copy strong { color: var(--ink); }
+  .about-notes {
+    display: grid;
+    gap: 10px;
+    margin-top: 26px;
+  }
+  .about-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .about-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    flex-shrink: 0;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-photo {
+    aspect-ratio: 1 / 1;
+    border-radius: 30px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #dad5cc 0%, #f0ece4 100%);
+    box-shadow: var(--shadow);
+  }
+  .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  .about-quote {
+    position: absolute;
+    bottom: -18px;
+    right: -18px;
+    max-width: 260px;
+    border-radius: 22px;
+    background: #ffffff;
+    border: 1px solid rgba(23,24,23,0.08);
+    padding: 18px;
+    box-shadow: 0 20px 50px rgba(21, 33, 29, 0.14);
+  }
+  .about-quote p {
+    font-family: var(--serif);
+    font-size: 15px;
+    line-height: 1.42;
+    margin-bottom: 8px;
+  }
+  .about-quote span {
+    font-size: 12px;
+    color: var(--muted-soft);
+  }
+
+  .cta-wrap {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(23,24,23,0.08);
+  }
+  .cta-panel {
+    background: linear-gradient(150deg, #15211d 0%, #21322d 58%, #1d5a54 100%);
+    color: #f7f5ef;
+    padding: 42px 38px;
+  }
+  .cta-title {
+    font-size: clamp(34px, 4vw, 54px);
+    margin-bottom: 18px;
+  }
+  .cta-text {
+    color: rgba(247,245,239,0.72);
+    font-size: 15px;
+    margin-bottom: 28px;
+    max-width: 460px;
+  }
+  .format-stack {
+    display: grid;
+    gap: 12px;
+  }
+  .format-card {
+    padding: 16px;
+    background: rgba(247,245,239,0.06);
+    border-color: rgba(247,245,239,0.12);
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .format-card.active {
+    background: rgba(134, 223, 209, 0.14);
+    border-color: rgba(134, 223, 209, 0.42);
+  }
+  .format-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .format-emoji {
+    font-size: 19px;
+    margin-top: 1px;
+  }
+  .format-title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+  .format-meta {
+    font-size: 12px;
+    color: rgba(247,245,239,0.54);
+  }
+  .form-panel {
+    background: rgba(255,255,255,0.88);
+    padding: 42px 38px;
+  }
+  .form-title {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
+  .form-subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .form-input {
+    width: 100%;
+    border: 1px solid rgba(23,24,23,0.12);
+    border-radius: 16px;
+    background: rgba(247,245,239,0.7);
+    padding: 13px 15px;
+    font: inherit;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .form-input:focus {
+    border-color: rgba(15,118,110,0.5);
+    box-shadow: 0 0 0 4px rgba(15,118,110,0.08);
+    background: #ffffff;
+  }
+  textarea.form-input {
+    min-height: 118px;
+    resize: vertical;
+  }
+  .form-submit {
+    width: 100%;
+    margin-top: 6px;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 15px 20px;
+  }
+  .form-note {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--muted-soft);
+    text-align: center;
+  }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 34px 0 8px;
+  }
+  .form-success-icon {
+    font-size: 46px;
+    margin-bottom: 14px;
+  }
+  .form-success-title {
+    font-family: var(--serif);
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .form-success-text {
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  footer {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 32px 42px;
+  }
+  .footer-inner {
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-name {
+    font-family: var(--serif);
+    font-size: 23px;
+    margin-bottom: 8px;
+  }
+  .footer-role,
+  .footer-meta {
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .footer-links {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .footer-links a:hover { color: var(--ink); }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 980px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-mobile-cta { display: inline-flex; }
+    section { padding: 80px 20px; }
+    .hero,
+    .proof-wrap,
+    .about-grid,
+    .cta-wrap {
+      grid-template-columns: 1fr;
+    }
+    .hero { min-height: auto; padding-top: 112px; }
+    .hero-aside { order: -1; }
+    .floating-note {
+      left: 18px;
+      bottom: 18px;
+      width: calc(100% - 36px);
+    }
+    .audience-grid,
+    .offers-grid,
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+    .section-head {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+    .section-copy { max-width: none; }
+    .proof-stats { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .about-quote {
+      position: static;
+      margin-top: 14px;
+      max-width: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Павел Васильев</a>
+  <div class="nav-links">
+    <a href="#audiences">Кому</a>
+    <a href="#offers">Что делаю</a>
+    <a href="#process">Как работаю</a>
+    <a href="#about">О себе</a>
+    <a href="#contact" class="nav-cta">Оставить запрос</a>
+  </div>
+  <a href="#contact" class="nav-mobile-cta">Запрос</a>
+</nav>
+
+<section class="hero">
+  <div class="fade-up">
+    <div class="eyebrow"><span></span>AI-автоматизация · консалтинг · воркшопы</div>
+    <h1>Помогаю внедрять <em>AI и автоматизацию</em> в реальные процессы бизнеса</h1>
+    <p class="hero-text">
+      Без магии и шума вокруг нейросетей. Разбираю, где автоматизация действительно экономит время, ускоряет команду и убирает ручную рутину, а где лучше не усложнять.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Обсудить задачу</a>
+      <a href="#audiences" class="btn-secondary">Посмотреть направления</a>
+    </div>
+    <div class="hero-points">
+      <div class="hero-point">AI-решения под реальные задачи</div>
+      <div class="hero-point">Воркшопы и обучение команд</div>
+      <div class="hero-point">Консультации для специалистов</div>
+      <div class="hero-point">Без сложного техно-жаргона</div>
+    </div>
+  </div>
+
+  <div class="hero-aside fade-up" style="transition-delay:0.1s">
+    <div class="hero-panel">
+      <div class="hero-photo">
+        <img src="pavel-portrait-2026.jpg" alt="Павел Васильев">
+      </div>
+      <div class="hero-card-grid">
+        <div class="hero-mini-card">
+          <div class="hero-mini-label">Опыт</div>
+          <div class="hero-mini-value">15+</div>
+          <div class="hero-mini-text">лет в маркетинге, CRM и управлении коммуникациями</div>
+        </div>
+        <div class="hero-mini-card">
+          <div class="hero-mini-label">Фокус</div>
+          <div class="hero-mini-value">AI</div>
+          <div class="hero-mini-text">внедрение в процессы, обучение, практическая автоматизация</div>
+        </div>
+      </div>
+    </div>
+    <div class="floating-note">
+      <div class="floating-note-label">Подход</div>
+      <div class="floating-note-text">«Не просто показать нейросеть, а встроить её в работу так, чтобы стало быстрее, понятнее и выгоднее»</div>
+    </div>
+  </div>
+</section>
+
+<section id="audiences">
+  <div class="section-head fade-up">
+    <div>
+      <div class="section-kicker">Два направления</div>
+      <h2 class="section-title">Сайт сразу делит запросы на <em>бизнес</em> и <em>специалистов</em></h2>
+    </div>
+    <p class="section-copy">
+      Это снимает путаницу: компаниям нужен внедренческий результат и обучение команды, а специалистам обычно важны личная консультация, разбор задачи и помощь руками.
+    </p>
+  </div>
+
+  <div class="audience-grid">
+    <article class="audience-card business fade-up">
+      <div class="audience-tag">Для бизнеса</div>
+      <h3>Когда команде нужен не хайп, а рабочая система</h3>
+      <p>Подходит компаниям, которые хотят понять, где AI реально помогает в операционке, маркетинге, клиентском сервисе или внутренних процессах.</p>
+      <div class="audience-list">
+        <div class="audience-item">
+          <div class="audience-icon">01</div>
+          <div><strong>AI-воркшоп для команды</strong><span>Практическая сессия под вашу роль, процессы и уровень подготовки сотрудников.</span></div>
+        </div>
+        <div class="audience-item">
+          <div class="audience-icon">02</div>
+          <div><strong>Аудит процессов</strong><span>Ищу, где есть ручная рутина, долгие согласования, повторяемые действия и узкие места.</span></div>
+        </div>
+        <div class="audience-item">
+          <div class="audience-icon">03</div>
+          <div><strong>План внедрения</strong><span>Собираю понятную карту: что автоматизировать сначала, чем, с какими рисками и какой ожидаемой пользой.</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="audience-card specialists fade-up" style="transition-delay:0.08s">
+      <div class="audience-tag">Для специалистов</div>
+      <h3>Когда хочется самому начать использовать AI сильнее</h3>
+      <p>Для маркетологов, менеджеров, продактов, фаундеров и специалистов, которые хотят перестать делать всё вручную и собрать свою рабочую систему.</p>
+      <div class="audience-list">
+        <div class="audience-item">
+          <div class="audience-icon">01</div>
+          <div><strong>Личная консультация</strong><span>Разбираем текущую задачу, инструменты и подбираем подход под твой контекст.</span></div>
+        </div>
+        <div class="audience-item">
+          <div class="audience-icon">02</div>
+          <div><strong>Разбор конкретного процесса</strong><span>Например: контент, продажи, CRM, исследование, аналитика, документы, коммуникации.</span></div>
+        </div>
+        <div class="audience-item">
+          <div class="audience-icon">03</div>
+          <div><strong>Мини-внедрение</strong><span>На встрече или после неё собираем простой, но уже работающий сценарий автоматизации под задачу.</span></div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="offers">
+  <div class="section-head fade-up">
+    <div>
+      <div class="section-kicker">Что можно заказать</div>
+      <h2 class="section-title">Первый набор услуг для <em>черновика сайта</em></h2>
+    </div>
+    <p class="section-copy">
+      Я специально оставила формулировки практичными, без избыточных обещаний. Это выглядит взрослее и лучше продаёт экспертность.
+    </p>
+  </div>
+
+  <div class="offers-grid">
+    <article class="offer-card fade-up">
+      <div class="offer-icon">🧭</div>
+      <h3>AI-аудит процессов</h3>
+      <p>Короткий диагностический разбор: где в компании теряется время, что можно автоматизировать уже сейчас и что точно не стоит трогать.</p>
+    </article>
+    <article class="offer-card fade-up" style="transition-delay:0.05s">
+      <div class="offer-icon">🎓</div>
+      <h3>Воркшоп для команды</h3>
+      <p>Живая сессия для отдела или кросс-функциональной команды: сценарии применения AI, упражнения и разбор ваших кейсов.</p>
+    </article>
+    <article class="offer-card fade-up" style="transition-delay:0.1s">
+      <div class="offer-icon">⚙️</div>
+      <h3>Проектирование автоматизации</h3>
+      <p>Собираю логику процесса: входящие данные, шаги, роли, промпты, точки контроля и инструменты, которые лучше всего подойдут.</p>
+    </article>
+    <article class="offer-card fade-up">
+      <div class="offer-icon">🧪</div>
+      <h3>Пилот под конкретную задачу</h3>
+      <p>Быстрый тест на одном процессе: контент, клиентские ответы, аналитика, внутренние регламенты, маркетинговые рутины.</p>
+    </article>
+    <article class="offer-card fade-up" style="transition-delay:0.05s">
+      <div class="offer-icon">🧠</div>
+      <h3>Личная консультация специалиста</h3>
+      <p>Один на один разбираем задачу и собираем способ работать быстрее: от выбора инструментов до практики применения в ежедневной работе.</p>
+    </article>
+    <article class="offer-card fade-up" style="transition-delay:0.1s">
+      <div class="offer-icon">🤝</div>
+      <h3>Сопровождение внедрения</h3>
+      <p>Подходит тем, кому нужен не разовый совет, а несколько итераций, обратная связь и помощь при запуске первых сценариев.</p>
+    </article>
+  </div>
+</section>
+
+<section id="process">
+  <div class="section-head fade-up">
+    <div>
+      <div class="section-kicker">Как проходит работа</div>
+      <h2 class="section-title">Простой маршрут: от запроса к <em>внятному решению</em></h2>
+    </div>
+  </div>
+
+  <div class="process-grid">
+    <article class="process-card fade-up">
+      <div class="process-step">Шаг 1</div>
+      <div class="process-title">Контекст</div>
+      <p>Сначала разбираемся, что у вас происходит сейчас, кто участники процесса, где рутина и где реальная боль.</p>
+    </article>
+    <article class="process-card fade-up" style="transition-delay:0.05s">
+      <div class="process-step">Шаг 2</div>
+      <div class="process-title">Приоритет</div>
+      <p>Выбираем один или несколько процессов, где автоматизация даст понятный эффект, а не просто красивую демонстрацию.</p>
+    </article>
+    <article class="process-card fade-up" style="transition-delay:0.1s">
+      <div class="process-step">Шаг 3</div>
+      <div class="process-title">Сценарий</div>
+      <p>Собираем логику внедрения: инструменты, шаги, роли, форматы работы, ограничения и контроль качества результата.</p>
+    </article>
+    <article class="process-card fade-up" style="transition-delay:0.15s">
+      <div class="process-step">Шаг 4</div>
+      <div class="process-title">Запуск</div>
+      <p>Если нужно, помогаю запустить пилот, обучить команду или скорректировать систему после первых недель использования.</p>
+    </article>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="proof-wrap">
+    <div class="proof-lead fade-up">
+      <div class="section-kicker">Почему это может сработать</div>
+      <h3>Я прихожу в AI не из теории, а из <em>реальных бизнес-процессов</em></h3>
+      <p>
+        У меня сильная база в маркетинге, CRM, коммуникациях и управлении. Поэтому я смотрю на AI не как на отдельную игрушку, а как на слой, который должен встраиваться в существующую работу и приносить полезный результат.
+      </p>
+      <div class="proof-stats">
+        <div class="proof-stat">
+          <div class="proof-value">15+</div>
+          <div class="proof-label">лет в маркетинге и операционной реальности бизнеса</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-value">20M</div>
+          <div class="proof-label">максимальный размер базы и сложных коммуникационных систем в опыте</div>
+        </div>
+        <div class="proof-stat">
+          <div class="proof-value">10+</div>
+          <div class="proof-label">крупных брендов и высоконагруженных задач в портфеле</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proof-grid">
+      <article class="proof-card fade-up" style="transition-delay:0.05s">
+        <h4>Понимаю команды, а не только инструменты</h4>
+        <p>Могу говорить и с руководителем, и со специалистом. Это важно, когда внедрение упирается не в нейросеть, а в людей, роли и привычки.</p>
+      </article>
+      <article class="proof-card fade-up" style="transition-delay:0.1s">
+        <h4>Люблю прикладной результат</h4>
+        <p>Если задача решается без сложной автоматизации, я лучше предложу простой путь, чем буду продавать лишнюю архитектуру.</p>
+      </article>
+      <article class="proof-card fade-up" style="transition-delay:0.15s">
+        <h4>Умею объяснять спокойно и по делу</h4>
+        <p>Для бизнеса это снижает страх перед новой темой, а для специалистов делает вход в AI-инструменты быстрее и менее хаотичным.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-head fade-up">
+    <div>
+      <div class="section-kicker">О Павле</div>
+      <h2 class="section-title">Не технарь-теоретик, а человек, который умеет переводить <em>сложное в рабочее</em></h2>
+    </div>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-copy fade-up">
+      <p>
+        Более 15 лет я работаю на стыке <strong>маркетинга, CRM, коммуникаций и управленческих задач</strong>. Это даёт важную оптику: я вижу не просто инструмент, а контекст бизнеса, нагрузку на команду и стоимость ошибок.
+      </p>
+      <p>
+        Сейчас мне интересно направление, где AI помогает компаниям и специалистам работать умнее: быстрее собирать материалы, систематизировать знания, автоматизировать повторяющиеся действия и ускорять принятие решений.
+      </p>
+      <p>
+        Мне ближе спокойный и взрослый подход: без «нейросеть всё сделает сама», зато с понятной пользой, конкретным сценарием и здравой логикой внедрения.
+      </p>
+      <div class="about-notes">
+        <div class="about-note"><span class="about-dot"></span><span>Веду разговор простым языком, без лишнего пафоса</span></div>
+        <div class="about-note"><span class="about-dot"></span><span>Могу работать и с руководителем, и с отдельным специалистом</span></div>
+        <div class="about-note"><span class="about-dot"></span><span>Люблю решения, которые упрощают жизнь, а не создают новую сложность</span></div>
+      </div>
+    </div>
+
+    <div class="about-visual fade-up" style="transition-delay:0.08s">
+      <div class="about-photo">
+        <img src="pavel-about-portrait-2026.jpg" alt="Павел Васильев">
+      </div>
+      <div class="about-quote">
+        <p>«Хорошая автоматизация не заменяет мышление. Она убирает рутину, чтобы у команды осталось больше сил на важное.»</p>
+        <span>Павел Васильев</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="cta-wrap fade-up">
+    <div class="cta-panel">
+      <div class="section-kicker">Старт</div>
+      <h2 class="cta-title">Можно начать с <em>короткого запроса</em></h2>
+      <p class="cta-text">
+        Опиши задачу в двух-трёх предложениях. Я пойму, что тебе больше подходит: воркшоп, аудит процесса, личная консультация или сопровождение.
+      </p>
+
+      <div class="format-stack">
+        <div class="format-card active" onclick="selectFormat(this, 'business_workshop')">
+          <div class="format-head">
+            <div class="format-emoji">🏢</div>
+            <div>
+              <div class="format-title">Воркшоп для бизнеса</div>
+              <div class="format-meta">Команда · обучение · практика на ваших кейсах</div>
+            </div>
+          </div>
+        </div>
+        <div class="format-card" onclick="selectFormat(this, 'process_audit')">
+          <div class="format-head">
+            <div class="format-emoji">🧭</div>
+            <div>
+              <div class="format-title">Аудит и карта автоматизации</div>
+              <div class="format-meta">Разбор процессов · точки роста · приоритеты</div>
+            </div>
+          </div>
+        </div>
+        <div class="format-card" onclick="selectFormat(this, 'specialist_consult')">
+          <div class="format-head">
+            <div class="format-emoji">🧠</div>
+            <div>
+              <div class="format-title">Консультация для специалиста</div>
+              <div class="format-meta">Личный разбор задачи · инструменты · практический сценарий</div>
+            </div>
+          </div>
+        </div>
+        <div class="format-card" onclick="selectFormat(this, 'support')">
+          <div class="format-head">
+            <div class="format-emoji">🤝</div>
+            <div>
+              <div class="format-title">Сопровождение внедрения</div>
+              <div class="format-meta">Несколько итераций · помощь в запуске · обратная связь</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-panel">
+      <div id="booking-form-wrap">
+        <h3 class="form-title">Оставить запрос</h3>
+        <p class="form-subtitle">Отвечу, какой формат подойдёт лучше всего, и предложу следующий шаг</p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Имя</label>
+            <input type="text" class="form-input" placeholder="Ваше имя" id="f-name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Телефон или Telegram</label>
+            <input type="text" class="form-input" placeholder="+7 999 или @username" id="f-contact">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="your@email.com" id="f-email">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Формат</label>
+          <select class="form-input" id="f-format">
+            <option value="business_workshop">Воркшоп для бизнеса</option>
+            <option value="process_audit">Аудит и карта автоматизации</option>
+            <option value="specialist_consult">Консультация для специалиста</option>
+            <option value="support">Сопровождение внедрения</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Что за задача</label>
+          <textarea class="form-input" id="f-message" placeholder="Кто вы, какой процесс или задача вас интересует, что хотите улучшить с помощью AI или автоматизации"></textarea>
+        </div>
+
+        <button class="btn-primary form-submit" id="form-submit-btn" onclick="submitForm()">Отправить запрос</button>
+        <p class="form-note">Если удобнее, можно сразу написать в Telegram: @utochkirosta</p>
+      </div>
+
+      <div class="form-success" id="form-success">
+        <div class="form-success-icon">✅</div>
+        <div class="form-success-title">Запрос отправлен</div>
+        <p class="form-success-text">Я получил сообщение и вернусь с ответом в ближайшее время.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">Павел Васильев</div>
+      <div class="footer-role">AI-автоматизация · консалтинг · воркшопы для бизнеса и специалистов</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://t.me/utochkirosta" target="_blank">Telegram-канал</a>
+      <a href="tel:+79652508952">+7 (965) 250-89-52</a>
+      <span class="footer-meta">© 2010-2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwUaVSd9Dq5WsHidld6lvTubfXCOUBDBsXDgKPNcyr5xFRJsy8uVuy0_rNX9cKvArv0/exec';
+
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
+
+  function selectFormat(el, format) {
+    document.querySelectorAll('.format-card').forEach((card) => card.classList.remove('active'));
+    el.classList.add('active');
+    const select = document.getElementById('f-format');
+    if (select) {
+      select.value = format;
+    }
+  }
+
+  async function submitForm() {
+    const nameInput = document.getElementById('f-name');
+    const contactInput = document.getElementById('f-contact');
+    const emailInput = document.getElementById('f-email');
+    const formatInput = document.getElementById('f-format');
+    const messageInput = document.getElementById('f-message');
+    const submitBtn = document.getElementById('form-submit-btn');
+    const name = nameInput.value.trim();
+    const contact = contactInput.value.trim();
+
+    if (!name || !contact) {
+      nameInput.style.borderColor = name ? 'rgba(23,24,23,0.12)' : '#d24f4e';
+      contactInput.style.borderColor = contact ? 'rgba(23,24,23,0.12)' : '#d24f4e';
+      return;
+    }
+
+    nameInput.style.borderColor = 'rgba(23,24,23,0.12)';
+    contactInput.style.borderColor = 'rgba(23,24,23,0.12)';
+
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Отправляем...';
+
+    const params = new URLSearchParams({
+      name,
+      contact,
+      email: emailInput.value.trim(),
+      format: formatInput.value,
+      message: messageInput.value.trim(),
+      page: window.location.href,
+      source: 'github-pages-ai-draft',
+      userAgent: navigator.userAgent
+    });
+
+    try {
+      const response = await fetch(`${FORM_ENDPOINT}?${params.toString()}`, {
+        method: 'GET'
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      document.getElementById('booking-form-wrap').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } catch (error) {
+      console.error(error);
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      alert('Не удалось отправить заявку. Напишите мне в Telegram: @utochkirosta');
+    }
+  }
+</script>
+</body>
+</html>
