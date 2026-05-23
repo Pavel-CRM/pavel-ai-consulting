@@ -26,6 +26,9 @@
     --shadow: 0 20px 60px rgba(21, 33, 29, 0.08);
     --serif: "Fraunces", Georgia, serif;
     --sans: "DM Sans", system-ui, sans-serif;
+    --accent: var(--teal);
+    --accent-soft: var(--teal-soft);
+    --accent-rgb: 15, 118, 110;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,6 +42,16 @@
       linear-gradient(180deg, #fbfaf7 0%, var(--paper) 46%, #f3f1eb 100%);
     line-height: 1.6;
     overflow-x: hidden;
+    transition: background 0.35s ease, color 0.25s ease;
+  }
+  body[data-audience="specialists"] {
+    --accent: var(--amber);
+    --accent-soft: var(--amber-soft);
+    --accent-rgb: 184, 106, 31;
+    background:
+      radial-gradient(circle at top left, rgba(184,106,31,0.10), transparent 32%),
+      radial-gradient(circle at top right, rgba(15,118,110,0.08), transparent 28%),
+      linear-gradient(180deg, #fcfaf6 0%, #f7f2ea 46%, #f3ede4 100%);
   }
   a { color: inherit; }
   img { display: block; max-width: 100%; }
@@ -101,7 +114,7 @@
   .nav-cta:hover,
   .btn-primary:hover {
     transform: translateY(-1px);
-    background: var(--teal);
+    background: var(--accent);
   }
   .nav-cta {
     padding: 10px 18px;
@@ -115,6 +128,7 @@
     color: #f7f5ef;
   }
   .nav-mobile-cta:hover { background: var(--teal); transform: translateY(-1px); }
+  body[data-audience="specialists"] .nav-mobile-cta:hover { background: var(--accent); }
 
   section {
     max-width: 1160px;
@@ -137,8 +151,8 @@
     gap: 10px;
     padding: 7px 16px;
     border-radius: 999px;
-    background: var(--teal-soft);
-    color: var(--teal);
+    background: var(--accent-soft);
+    color: var(--accent);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 12px;
@@ -168,7 +182,7 @@
   .section-title em,
   .cta-title em {
     font-style: italic;
-    color: var(--teal);
+    color: var(--accent);
   }
   .hero-text {
     font-size: 19px;
@@ -209,6 +223,9 @@
     background: rgba(255,255,255,0.48);
     font-size: 13px;
     color: var(--muted);
+  }
+  .hero-switch-wrap {
+    margin-bottom: 28px;
   }
   .hero-aside {
     position: relative;
@@ -716,8 +733,8 @@
     transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   }
   .form-input:focus {
-    border-color: rgba(15,118,110,0.5);
-    box-shadow: 0 0 0 4px rgba(15,118,110,0.08);
+    border-color: rgba(var(--accent-rgb), 0.5);
+    box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.08);
     background: #ffffff;
   }
   textarea.form-input {
@@ -870,20 +887,47 @@
 
 <section class="hero">
   <div class="fade-up">
-    <div class="eyebrow"><span></span>AI-автоматизация · консалтинг · воркшопы</div>
-    <h1>Помогаю внедрять <em>AI и автоматизацию</em> в реальные процессы бизнеса</h1>
-    <p class="hero-text">
-      Без магии и шума вокруг нейросетей. Разбираю, где автоматизация действительно экономит время, ускоряет команду и убирает ручную рутину, а где лучше не усложнять.
-    </p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Обсудить задачу</a>
-      <a href="#audiences" class="btn-secondary">Посмотреть направления</a>
+    <div class="hero-switch-wrap">
+      <div class="audience-switch" aria-label="Выбор сценария">
+        <button class="switch-btn active" type="button" data-audience-switch="business" onclick="setAudience('business')">Для бизнеса</button>
+        <button class="switch-btn" type="button" data-audience-switch="specialists" onclick="setAudience('specialists')">Для специалистов</button>
+      </div>
     </div>
-    <div class="hero-points">
-      <div class="hero-point">AI-решения под реальные задачи</div>
-      <div class="hero-point">Воркшопы и обучение команд</div>
-      <div class="hero-point">Консультации для специалистов</div>
-      <div class="hero-point">Без сложного техно-жаргона</div>
+
+    <div class="scenario-panel active" data-scenario="business">
+      <div class="eyebrow"><span></span>AI-автоматизация · консалтинг · воркшопы</div>
+      <h1>Помогаю внедрять <em>AI и автоматизацию</em> в реальные процессы бизнеса</h1>
+      <p class="hero-text">
+        Без магии и шума вокруг нейросетей. Разбираю, где автоматизация действительно экономит время, ускоряет команду и убирает ручную рутину, а где лучше не усложнять.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Обсудить задачу</a>
+        <a href="#offers" class="btn-secondary">Посмотреть форматы</a>
+      </div>
+      <div class="hero-points">
+        <div class="hero-point">AI-решения под реальные задачи</div>
+        <div class="hero-point">Воркшопы и обучение команд</div>
+        <div class="hero-point">Аудит процессов и пилоты</div>
+        <div class="hero-point">Без сложного техно-жаргона</div>
+      </div>
+    </div>
+
+    <div class="scenario-panel" data-scenario="specialists">
+      <div class="eyebrow"><span></span>AI-инструменты · консультации · практическая настройка</div>
+      <h1>Помогаю специалистам встроить <em>AI в ежедневную работу</em></h1>
+      <p class="hero-text">
+        Не курс ради курса, а прикладной разбор твоих задач. Смотрим, что можно ускорить, автоматизировать и упростить уже сейчас, без лишней сложности.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Разобрать мою задачу</a>
+        <a href="#offers" class="btn-secondary">Посмотреть форматы</a>
+      </div>
+      <div class="hero-points">
+        <div class="hero-point">Личный разбор рабочего процесса</div>
+        <div class="hero-point">Промпты и сценарии под задачу</div>
+        <div class="hero-point">Мини-внедрение на встрече</div>
+        <div class="hero-point">Понятный вход без хаоса</div>
+      </div>
     </div>
   </div>
 
@@ -906,8 +950,8 @@
       </div>
     </div>
     <div class="floating-note">
-      <div class="floating-note-label">Подход</div>
-      <div class="floating-note-text">«Не просто показать нейросеть, а встроить её в работу так, чтобы стало быстрее, понятнее и выгоднее»</div>
+      <div class="floating-note-label" id="floating-note-label">Подход</div>
+      <div class="floating-note-text" id="floating-note-text">«Не просто показать нейросеть, а встроить её в работу так, чтобы стало быстрее, понятнее и выгоднее»</div>
     </div>
   </div>
 </section>
@@ -915,17 +959,12 @@
 <section id="audiences">
   <div class="section-head fade-up">
     <div>
-      <div class="section-kicker">Два направления</div>
-      <h2 class="section-title">Сайт теперь явно делит путь на <em>бизнес</em> и <em>специалистов</em></h2>
+      <div class="section-kicker">Формат работы</div>
+      <h2 class="section-title">Два разных сценария: <em>для команды</em> и <em>для личной практики</em></h2>
     </div>
     <p class="section-copy">
-      Это снимает путаницу: компаниям нужен внедренческий результат и обучение команды, а специалистам обычно важны личная консультация, разбор задачи и помощь руками.
+      Для компании важны внедрение и обучение команды. Для специалиста важны личная задача, быстрый разбор и способ применить AI в своей ежедневной работе.
     </p>
-  </div>
-
-  <div class="audience-switch fade-up" aria-label="Выбор сценария">
-    <button class="switch-btn active" type="button" data-audience-switch="business" onclick="setAudience('business')">Для бизнеса</button>
-    <button class="switch-btn" type="button" data-audience-switch="specialists" onclick="setAudience('specialists')">Для специалистов</button>
   </div>
 
   <div class="audience-grid">
@@ -975,10 +1014,10 @@
   <div class="section-head fade-up">
     <div>
       <div class="section-kicker">Что можно заказать</div>
-      <h2 class="section-title">У каждого сценария свои <em>блоки и услуги</em></h2>
+      <h2 class="section-title">У каждого направления свой <em>набор услуг</em></h2>
     </div>
     <p class="section-copy">
-      После переключения меняются сами офферы и следующий шаг. Так сайт ведёт человека по более точному маршруту, а не показывает всем одно и то же.
+      Формат подбирается под контекст: бизнесу нужны внедренческие задачи и командная работа, специалистам нужен более точный и личный разбор.
     </p>
   </div>
 
@@ -1057,7 +1096,7 @@
   <div class="section-head fade-up">
     <div>
       <div class="section-kicker">Как проходит работа</div>
-      <h2 class="section-title">И шаги к услуге тоже <em>разные</em></h2>
+      <h2 class="section-title">И маршрут к результату тоже <em>разный</em></h2>
     </div>
   </div>
 
@@ -1371,6 +1410,7 @@
 
   function setAudience(audience) {
     currentAudience = audience;
+    document.body.setAttribute('data-audience', audience);
 
     document.querySelectorAll('[data-audience-switch]').forEach((button) => {
       button.classList.toggle('active', button.dataset.audienceSwitch === audience);
@@ -1387,16 +1427,22 @@
     const formSubtitle = document.getElementById('form-subtitle');
     const messageInput = document.getElementById('f-message');
     const formatSelect = document.getElementById('f-format');
+    const noteLabel = document.getElementById('floating-note-label');
+    const noteText = document.getElementById('floating-note-text');
 
     if (audience === 'business') {
       if (formSubtitle) formSubtitle.textContent = 'Оставьте короткий бриф по команде и процессу. Я предложу подходящий формат работы.';
       if (messageInput) messageInput.placeholder = 'Что у вас за команда, какой процесс хотите улучшить, где сейчас много ручной работы или потерь времени';
       if (formatSelect) formatSelect.value = 'business_workshop';
+      if (noteLabel) noteLabel.textContent = 'Подход';
+      if (noteText) noteText.textContent = '«Не просто показать нейросеть, а встроить её в работу так, чтобы стало быстрее, понятнее и выгоднее»';
       activateFirstVisibleFormat();
     } else {
       if (formSubtitle) formSubtitle.textContent = 'Опишите личную рабочую задачу. Я предложу формат, с которого лучше начать.';
       if (messageInput) messageInput.placeholder = 'Какая у вас роль, какую задачу хотите ускорить или автоматизировать, что сейчас делаете вручную';
       if (formatSelect) formatSelect.value = 'specialist_consult';
+      if (noteLabel) noteLabel.textContent = 'Результат';
+      if (noteText) noteText.textContent = '«После встречи у тебя должен остаться не только интерес к AI, а рабочий способ применять его в своих задачах»';
       activateFirstVisibleFormat();
     }
   }
