@@ -110,26 +110,30 @@
   }
   .nav-cta,
   .btn-primary {
-    background: var(--night);
-    color: #f7f4ee;
+    background: linear-gradient(135deg, var(--night) 0%, var(--accent) 100%);
+    color: #fffaf4;
   }
   .nav-cta:hover,
   .btn-primary:hover {
     transform: translateY(-1px);
-    background: var(--accent);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--night) 100%);
   }
   .nav-cta {
-    padding: 10px 18px;
+    padding: 11px 20px;
     font-size: 13px;
+    border: 1px solid rgba(255,255,255,0.16);
+    box-shadow: 0 12px 24px rgba(var(--accent-rgb), 0.18);
   }
   .nav-mobile-cta {
     display: none;
     padding: 10px 16px;
     font-size: 13px;
-    background: var(--night);
-    color: #f7f4ee;
+    background: linear-gradient(135deg, var(--night) 0%, var(--accent) 100%);
+    color: #fffaf4;
+    border: 1px solid rgba(255,255,255,0.16);
+    box-shadow: 0 12px 24px rgba(var(--accent-rgb), 0.18);
   }
-  .nav-mobile-cta:hover { background: var(--accent); }
+  .nav-mobile-cta:hover { background: linear-gradient(135deg, var(--accent) 0%, var(--night) 100%); }
 
   section {
     max-width: 1160px;
@@ -174,26 +178,6 @@
     background: var(--night);
     color: #f7f4ee;
   }
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 7px 16px;
-    border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 12px;
-    font-weight: 700;
-    margin-bottom: 24px;
-  }
-  .eyebrow span {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: currentColor;
-  }
   h1,
   .section-title,
   .case-title,
@@ -224,7 +208,7 @@
     display: flex;
     gap: 14px;
     flex-wrap: wrap;
-    margin-bottom: 32px;
+    margin-bottom: 4px;
   }
   .btn-primary,
   .btn-secondary {
@@ -240,19 +224,6 @@
     transform: translateY(-1px);
     border-color: rgba(22,22,22,0.22);
     background: rgba(255,255,255,0.76);
-  }
-  .hero-points {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .hero-point {
-    padding: 11px 14px;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    background: rgba(255,255,255,0.45);
-    color: var(--muted);
-    font-size: 13px;
   }
   .hero-aside {
     position: relative;
@@ -282,7 +253,7 @@
   }
   .hero-fact {
     background: rgba(255,255,255,0.82);
-    padding: 20px;
+    padding: 28px 24px 26px;
   }
   .hero-fact-label {
     font-size: 12px;
@@ -298,7 +269,8 @@
     margin-bottom: 8px;
   }
   .hero-fact-text {
-    font-size: 13px;
+    font-size: 14px;
+    line-height: 1.55;
     color: var(--muted);
   }
   .hero-note {
@@ -548,6 +520,29 @@
     color: var(--accent);
     flex-shrink: 0;
   }
+  .case-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+  }
+  .case-detail {
+    padding: 18px 18px 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(22,22,22,0.08);
+    background: rgba(255,255,255,0.66);
+  }
+  .case-detail-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted-soft);
+    margin-bottom: 8px;
+  }
+  .case-detail-text {
+    font-size: 14px;
+    color: var(--muted);
+  }
 
   .about-wrap {
     display: grid;
@@ -772,7 +767,8 @@
     .problem-grid,
     .service-grid,
     .process-grid,
-    .case-metrics {
+    .case-metrics,
+    .case-detail-grid {
       grid-template-columns: 1fr;
     }
     .hero-note {
@@ -815,14 +811,12 @@
       <button class="mode-btn" type="button" data-mode-btn="specialists">Для специалистов</button>
     </div>
 
-    <div class="eyebrow"><span></span><span id="hero-eyebrow-text">AI-автоматизация · консалтинг · воркшопы</span></div>
     <h1 id="hero-title">Помогаю внедрять <em>AI и автоматизацию</em> в реальные процессы бизнеса</h1>
     <p class="hero-copy" id="hero-copy">Без магии и шума вокруг нейросетей. Разбираю, где автоматизация действительно экономит время, ускоряет команду и убирает ручную рутину, а где лучше не усложнять.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary" id="hero-primary">Обсудить задачу</a>
       <a href="#services" class="btn-secondary" id="hero-secondary">Посмотреть форматы</a>
     </div>
-    <div class="hero-points" id="hero-points"></div>
   </div>
 
   <div class="hero-aside fade-up" style="transition-delay:0.1s">
@@ -922,28 +916,38 @@
   </div>
 
   <div class="case-card fade-up" style="margin-top:18px;">
-    <div class="case-tag">Кейс · placeholder</div>
-    <div class="case-title">Оптимизация отчёта NPS</div>
-    <p class="case-copy">Пока оставляю здесь каркас под твой кейс. Когда пришлёшь фактические цифры и контекст, я быстро превращу этот блок в полноценный доказательный кейс.</p>
+    <div class="case-tag">Кейс · NPS-отчёт</div>
+    <div class="case-title">Автоматизация NPS-отчёта: меньше ручной рутины, быстрее выводы для команды</div>
+    <p class="case-copy">В крупной компании с мультиязычной командой квартальный NPS-цикл включал около 2000 открытых ответов. Раньше на просмотр, классификацию, поиск паттернов, сводные таблицы и финальный отчёт уходила полная рабочая неделя. После пересборки процесса с помощью Claude значимая часть этой ручной нагрузки ушла в автоматизированный сценарий.</p>
     <div class="case-metrics">
       <div class="case-metric">
-        <div class="case-metric-value">X%</div>
-        <div class="case-metric-label">сокращение времени на подготовку</div>
+        <div class="case-metric-value">~2000</div>
+        <div class="case-metric-label">открытых ответов в одном квартальном цикле</div>
       </div>
       <div class="case-metric">
-        <div class="case-metric-value">Y ч</div>
-        <div class="case-metric-label">экономия ручной работы в цикл</div>
+        <div class="case-metric-value">1 неделя</div>
+        <div class="case-metric-label">ручной работы высвобождалась из каждого цикла</div>
       </div>
       <div class="case-metric">
-        <div class="case-metric-value">Z</div>
-        <div class="case-metric-label">шагов автоматизировано</div>
+        <div class="case-metric-value">3+</div>
+        <div class="case-metric-label">ключевых улучшения помимо скорости</div>
       </div>
     </div>
     <ul class="case-list">
-      <li>Контекст: ручная сборка данных и подготовка отчёта занимали слишком много времени.</li>
-      <li>Что было сделано: пересобран процесс подготовки, автоматизированы повторяющиеся шаги и структура отчёта.</li>
-      <li>Что это дало: быстрее собирать отчёт, меньше ручных ошибок и более удобный процесс для команды.</li>
+      <li>Claude консолидирует массив ответов, классифицирует комментарии, собирает сводку и помогает сформировать итоговый отчёт.</li>
+      <li>Команда получает результаты быстрее и может раньше переходить от ручной обработки к обсуждению выводов и решений.</li>
+      <li>Отчёт стал интерактивнее, визуально понятнее и удобнее для мультиязычной среды.</li>
     </ul>
+    <div class="case-detail-grid">
+      <div class="case-detail">
+        <div class="case-detail-title">Что автоматизировали</div>
+        <div class="case-detail-text">Обработку открытых ответов, категоризацию, поиск паттернов, сбор сводки и подготовку финальной структуры отчёта.</div>
+      </div>
+      <div class="case-detail">
+        <div class="case-detail-title">Какую ценность это дало</div>
+        <div class="case-detail-text">Меньше монотонной ручной работы, быстрее получение результатов и больше времени у команды на интерпретацию данных и следующие действия.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1041,17 +1045,10 @@
 
   const content = {
     business: {
-      eyebrow: 'AI-автоматизация · консалтинг · воркшопы',
       heroTitle: 'Помогаю внедрять <em>AI и автоматизацию</em> в реальные процессы бизнеса',
-      heroCopy: 'Без магии и шума вокруг нейросетей. Разбираю, где автоматизация действительно экономит время, ускоряет команду и убирает ручную рутину, а где лучше не усложнять.',
+      heroCopy: 'Без магии и шума вокруг нейросетей. Разбираю, где автоматизация действительно экономит время, ускоряет команду и убирает ручную рутину. Один из реальных примеров: автоматизация NPS-отчёта, которая сняла до недели ручной работы в одном цикле.',
       heroPrimary: 'Обсудить задачу',
       heroSecondary: 'Посмотреть форматы',
-      heroPoints: [
-        'AI-решения под реальные задачи',
-        'Воркшопы и обучение команд',
-        'Аудит процессов и пилоты',
-        'Без сложного техно-жаргона'
-      ],
       heroFactValue: 'AI',
       heroFactText: 'внедрение в процессы, обучение, практическая автоматизация',
       heroNoteLabel: 'Подход',
@@ -1115,17 +1112,10 @@
       ]
     },
     specialists: {
-      eyebrow: 'AI-инструменты · консультации · практическая настройка',
       heroTitle: 'Помогаю специалистам встроить <em>AI в ежедневную работу</em>',
-      heroCopy: 'Не курс ради курса, а прикладной разбор твоих задач. Смотрим, что можно ускорить, автоматизировать и упростить уже сейчас, без лишней сложности.',
+      heroCopy: 'Не курс ради курса, а прикладной разбор твоих задач. Смотрим, что можно ускорить, автоматизировать и упростить уже сейчас, без лишней сложности. Подход опирается на реальные кейсы, где AI снимает большой объём ручной работы и ускоряет получение результата.',
       heroPrimary: 'Разобрать мою задачу',
       heroSecondary: 'Посмотреть форматы',
-      heroPoints: [
-        'Личный разбор рабочего процесса',
-        'Промпты и сценарии под задачу',
-        'Мини-внедрение на встрече',
-        'Понятный вход без хаоса'
-      ],
       heroFactValue: 'Практика',
       heroFactText: 'разбор задач, настройка сценариев и работающие способы применения AI',
       heroNoteLabel: 'Результат',
@@ -1253,7 +1243,6 @@
 
     const data = content[mode];
 
-    document.getElementById('hero-eyebrow-text').textContent = data.eyebrow;
     document.getElementById('hero-title').innerHTML = data.heroTitle;
     document.getElementById('hero-copy').textContent = data.heroCopy;
     document.getElementById('hero-primary').textContent = data.heroPrimary;
@@ -1262,7 +1251,6 @@
     document.getElementById('hero-fact-text').textContent = data.heroFactText;
     document.getElementById('hero-note-label').textContent = data.heroNoteLabel;
     document.getElementById('hero-note-text').textContent = data.heroNoteText;
-    document.getElementById('hero-points').innerHTML = data.heroPoints.map((point) => `<div class="hero-point">${point}</div>`).join('');
 
     document.getElementById('problems-title').innerHTML = data.problemsTitle;
     document.getElementById('problems-copy').textContent = data.problemsCopy;
